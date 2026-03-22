@@ -1,31 +1,153 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Datenschutzerklärung | Beatmaster</title>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700&display=swap" rel="stylesheet">
+    <title>Privacy Policy - BeatMaster</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
-        :root { --bg: #0b0d17; --text: #ffffff; --primary: #9d4edd; }
-        body { font-family: 'Outfit', sans-serif; background-color: var(--bg); color: var(--text); padding: 40px; max-width: 800px; margin: 0 auto; line-height: 1.6; }
-        h1 { color: var(--primary); margin-bottom: 20px; }
-        h2 { margin-top: 30px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px; }
-        a { color: var(--primary); }
+        :root {
+            --bg-color: #0b0e14;
+            --surface-color: #171c26;
+            --primary-accent: #FF8C00;
+            --text-main: #FFFFFF;
+            --text-secondary: #a0a6b8;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.7;
+            padding: 60px 20px;
+            max-width: 900px;
+            margin: 0 auto;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        header {
+            margin-bottom: 60px;
+            text-align: left;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(255, 140, 0, 0.1);
+            color: var(--primary-accent);
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            border: 1px solid rgba(255, 140, 0, 0.3);
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            letter-spacing: -1.5px;
+        }
+
+        h1 span { color: var(--primary-accent); }
+
+        h2 {
+            font-size: 1.8rem;
+            margin: 40px 0 20px;
+            color: var(--primary-accent);
+            font-weight: 700;
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            margin: 25px 0 15px;
+            color: #FFFFFF;
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+
+        .card {
+            background-color: var(--surface-color);
+            padding: 30px;
+            border-radius: 16px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        a {
+            color: var(--primary-accent);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        a:hover { text-decoration: underline; }
+
+        footer {
+            margin-top: 80px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            margin-bottom: 40px;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .back-link:hover { color: var(--primary-accent); }
     </style>
 </head>
 <body>
-    <h1>Datenschutzerklärung</h1>
-    <p>Der Schutz Ihrer Daten ist uns wichtig. Diese Anwendung ("Beatmaster") speichert keine persönlichen Daten auf unseren Servern ohne Ihre explizite Zustimmung.</p>
-    
-    <h2>1. Datenerfassung</h2>
-    <p>Die App nutzt Google AdMob zur Anzeige von Werbung. AdMob kann anonymisierte Werbe-IDs erfassen, um relevante Anzeigen auszuspielen.</p>
-    
-    <h2>2. Firebase Cloud Firestore</h2>
-    <p>Spieldaten werden anonym in der Firebase-Datenbank gespeichert, um Multiplayer-Lobbies zu ermöglichen.</p>
-    
-    <h2>3. Ihre Rechte</h2>
-    <p>Sie haben jederzeit das Recht auf Auskunft über Ihre gespeicherten Daten.</p>
-    
-    <p style="margin-top: 50px;"><a href="index.html">&larr; Zurück zur Startseite</a></p>
+
+<a href="index.html" class="back-link">← Return to Home</a>
+
+<header>
+    <div class="badge">Legal Documentation</div>
+    <h1>Privacy <span>Policy</span></h1>
+    <p>Last Updated: March 2026</p>
+</header>
+
+<div class="card">
+    <h2>1. Data Autonomy</h2>
+    <p>We respect your privacy. BeatMaster is built with the principle of minimal data collection. We do not sell your personal data to third parties.</p>
+</div>
+
+<h2>2. Third-Party Integrations</h2>
+
+<div class="card">
+    <h3>Apple Music & iTunes API</h3>
+    <p>Our application utilizes the Apple Music and iTunes Search API to provide high-quality music previews and cover art. Interaction with these services is governed by Apple's own privacy policies. We do not store your Apple Music library data or credentials on our servers.</p>
+</div>
+
+<div class="card">
+    <h3>Google AdMob</h3>
+    <p>To keep the application free for everyone, we display advertisements via Google AdMob. Google may use advertising identifiers to serve relevant ads. You can manage your ad preferences through your Android device settings.</p>
+</div>
+
+<div class="card">
+    <h3>Firebase Cloud Firestore</h3>
+    <p>Our real-time multiplayer lobbies are powered by Firebase. We generate anonymous session IDs to synchronize game states between players. No permanent personally identifiable information (PII) is required to play.</p>
+</div>
+
+<h2>3. Contact Us</h2>
+<p>If you have any questions regarding how we handle your data, feel free to reach out to us at <strong>Andreaspointecker@gmail.com</strong>.</p>
+
+<footer>
+    <p>&copy; 2026 BeatMaster Development Team. Transparent. Secure. Playful.</p>
+</footer>
+
 </body>
 </html>
