@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beatmaster | Das ultimative Musik-Quiz</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #9d4edd;
+            --secondary: #5a189a;
+            --accent: #00f2ff;
+            --bg: #0b0d17;
+            --text: #ffffff;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(rgba(11, 13, 23, 0.7), rgba(11, 13, 23, 0.7)), url('assets/images/background.png');
+            background-size: cover;
+            background-position: center;
+            padding: 20px;
+        }
+        h1 {
+            font-size: 5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, var(--accent), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 10px 30px rgba(157, 78, 221, 0.3);
+        }
+        p {
+            font-size: 1.5rem;
+            max-width: 600px;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 40px;
+        }
+        .btn {
+            background: var(--primary);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 0 20px rgba(157, 78, 221, 0.5);
+        }
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 40px rgba(157, 78, 221, 0.8);
+        }
+        footer {
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+            text-align: center;
+            font-size: 0.9rem;
+            opacity: 0.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <h1>BEATMASTER</h1>
+        <p>Errate Songs, fordere Freunde heraus und werde zum ultimativen Beatmaster. Das Musik-Quiz der nächsten Generation.</p>
+        <a href="#" class="btn">JETZT LADEN</a>
+    </div>
+    <footer>
+        &copy; 2026 Andreas Pointecker | <a href="privacy.html" style="color: white;">Datenschutz</a> | <a href="app-ads.txt" style="color: white;">app-ads.txt</a>
+    </footer>
+</body>
+</html>
