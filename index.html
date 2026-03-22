@@ -1,83 +1,362 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Beatmaster | Das ultimative Musik-Quiz</title>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700&display=swap" rel="stylesheet">
+    <title>BeatMaster - The Music Quiz Experience</title>
+    <meta name="description" content="BeatMaster is a multiplayer music quiz app directly powered by Apple Music API. We provide a fun and engaging way to guess songs and instantly stream them on Apple Music, bringing new listeners to the ecosystem.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #9d4edd;
-            --secondary: #5a189a;
-            --accent: #00f2ff;
-            --bg: #0b0d17;
-            --text: #ffffff;
+            --bg-color: #0b0e14;
+            --surface-color: #171c26;
+            --primary-accent: #FF8C00;
+            --text-main: #FFFFFF;
+            --text-secondary: #a0a6b8;
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: 'Outfit', sans-serif;
-            background-color: var(--bg);
-            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.7;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
-        .hero {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+
+        header {
+            padding: 80px 20px 60px;
             text-align: center;
-            background: linear-gradient(rgba(11, 13, 23, 0.7), rgba(11, 13, 23, 0.7)), url('assets/images/background.png');
-            background-size: cover;
-            background-position: center;
-            padding: 20px;
+            background: radial-gradient(circle at top, rgba(255,140,0,0.15) 0%, rgba(11,14,20,1) 70%);
+            position: relative;
         }
-        h1 {
-            font-size: 5rem;
-            margin-bottom: 20px;
-            background: linear-gradient(45deg, var(--accent), var(--primary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 10px 30px rgba(157, 78, 221, 0.3);
-        }
-        p {
-            font-size: 1.5rem;
-            max-width: 600px;
-            color: rgba(255,255,255,0.8);
-            margin-bottom: 40px;
-        }
-        .btn {
-            background: var(--primary);
-            color: white;
-            padding: 15px 40px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: transform 0.3s, box-shadow 0.3s;
-            box-shadow: 0 0 20px rgba(157, 78, 221, 0.5);
-        }
-        .btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 40px rgba(157, 78, 221, 0.8);
-        }
-        footer {
-            position: absolute;
-            bottom: 20px;
-            width: 100%;
-            text-align: center;
+
+        .badge {
+            display: inline-block;
+            background: rgba(255, 140, 0, 0.1);
+            color: var(--primary-accent);
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-weight: 600;
             font-size: 0.9rem;
-            opacity: 0.6;
+            letter-spacing: 1px;
+            border: 1px solid rgba(255, 140, 0, 0.3);
+            margin-bottom: 24px;
+        }
+
+        h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            color: #FFFFFF;
+            margin-bottom: 20px;
+            letter-spacing: -1.5px;
+        }
+
+        h1 span {
+            color: var(--primary-accent);
+        }
+
+        .subtitle {
+            font-size: 1.4rem;
+            color: var(--text-secondary);
+            font-weight: 300;
+            max-width: 750px;
+            margin: 0 auto 50px auto;
+        }
+
+        .apple-notice {
+            background-color: var(--surface-color);
+            padding: 30px 40px;
+            border-left: 5px solid #FA243C; /* Apple Pink/Red */
+            border-radius: 16px;
+            max-width: 900px;
+            margin: 0 auto 60px auto;
+            text-align: left;
+            font-size: 1.1rem;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+            position: relative;
+            z-index: 10;
+        }
+
+        .apple-notice strong {
+            color: #FA243C;
+            display: block;
+            margin-bottom: 12px;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 800;
+        }
+
+        .apple-notice p {
+            color: var(--text-main);
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .journey-step {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 140px;
+            gap: 80px;
+        }
+
+        .journey-step:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .step-content {
+            flex: 1;
+        }
+
+        .step-number {
+            font-size: 1rem;
+            font-weight: 800;
+            color: var(--primary-accent);
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            display: flex;
+            align-items: center;
+        }
+
+        .step-number::before {
+            content: '';
+            display: inline-block;
+            width: 30px;
+            height: 2px;
+            background-color: var(--primary-accent);
+            margin-right: 15px;
+        }
+
+        .step-content h2 {
+            font-size: 2.8rem;
+            margin-bottom: 25px;
+            font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: -0.5px;
+        }
+
+        .step-content p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 25px;
+            font-weight: 300;
+        }
+
+        .highlight-box {
+            background: rgba(250, 36, 60, 0.05); /* Apple red tint */
+            border: 1px solid rgba(250, 36, 60, 0.2);
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 30px;
+        }
+
+        .highlight-box.apple-focus {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .apple-icon {
+            font-size: 1.5rem;
+            line-height: 1;
+        }
+
+        .highlight-box h4 {
+            color: #FFFFFF;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+        
+        .highlight-box p {
+            font-size: 1rem;
+            margin-bottom: 0;
+            color: #d1d5e0;
+        }
+
+        .step-image {
+            flex: 1;
+            text-align: center;
+            position: relative;
+        }
+
+        .step-image img {
+            max-width: 300px;
+            width: 100%;
+            border-radius: 36px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.05) inset;
+            border: 8px solid #1a1f2e;
+            transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .step-image img:hover {
+            transform: translateY(-15px) scale(1.03);
+        }
+
+        /* Ambient Glow per Image */
+        .step-image::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 85%;
+            height: 90%;
+            background: var(--primary-accent);
+            filter: blur(100px);
+            opacity: 0.12;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+            border-radius: 50%;
+        }
+
+        /* Apple Music specific glow for the resolution screen */
+        .step-image.apple-glow::after {
+            background: #FA243C; /* Apple Red */
+            opacity: 0.18;
+            filter: blur(120px);
+        }
+
+        footer {
+            text-align: center;
+            padding: 60px 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-secondary);
+            background-color: #080a0f;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 950px) {
+            .journey-step, .journey-step:nth-child(even) {
+                flex-direction: column;
+                text-align: left;
+                gap: 50px;
+                margin-bottom: 100px;
+            }
+            .step-image { text-align: center; width: 100%; display: flex; justify-content: center; }
+            .step-image img { max-width: 280px; }
+            h1 { font-size: 3rem; }
+            .step-content h2 { font-size: 2.3rem; }
         }
     </style>
 </head>
 <body>
-    <div class="hero">
-        <h1>BEATMASTER</h1>
-        <p>Errate Songs, fordere Freunde heraus und werde zum ultimativen Beatmaster. Das Musik-Quiz der nächsten Generation.</p>
-        <a href="#" class="btn">JETZT LADEN</a>
+
+<header>
+    <div class="badge">Official Application Profile</div>
+    <h1>BeatMaster <span>App</span></h1>
+    <p class="subtitle">The social music trivia game designed from the ground up to showcase Apple Music's incredible catalog and convert players into subscribers.</p>
+    
+    <div class="apple-notice">
+        <strong>Apple Affiliate Program Context</strong>
+        <p>This page serves as a live demonstration of how the BeatMaster Android App utilizes the Apple Music API. Our core retention loop relies on exposing users to high-quality Apple Music 30s previews and redirecting them to the Apple Music platform to consume full songs organically.</p>
     </div>
-    <footer>
-        &copy; 2026 Andreas Pointecker | <a href="privacy.html" style="color: white;">Datenschutz</a> | <a href="app-ads.txt" style="color: white;">app-ads.txt</a>
-    </footer>
+</header>
+
+<div class="container">
+    
+    <!-- Step 1: Main Menu -->
+    <div class="journey-step">
+        <div class="step-content">
+            <div class="step-number">01 — Home</div>
+            <h2>The Arcade Experience</h2>
+            <p>Players are greeted by a modern, highly engaging hub. From here, users can dive into quick setups, continue their active streaks, or unlock new music categories.</p>
+            <p>Our UI is designed to be sleek and dark, putting absolute focus on vibrant accents and music discoverability from the very first tap.</p>
+        </div>
+        <div class="step-image">
+            <img src="assets/screen4.png" alt="Main Menu Screen">
+        </div>
+    </div>
+
+    <!-- Step 2: Playlists -->
+    <div class="journey-step">
+        <div class="step-content">
+            <div class="step-number">02 — Catalog</div>
+            <h2>A World of Genres</h2>
+            <p>BeatMaster categorizes the vast Apple Music database into curated playlists: 80s Rock, 90s Pop, modern Hip-Hop, or even iconic Film Soundtracks.</p>
+            <p>Players curate their own match by merging multiple playlists. The more playlists they select, the more diverse the ultimate Spotify-like streaming experience during the trivia game.</p>
+        </div>
+        <div class="step-image">
+            <img src="assets/playlists.png" alt="Playlist Selection">
+        </div>
+    </div>
+
+    <!-- Step 3: Lobby -->
+    <div class="journey-step">
+        <div class="step-content">
+            <div class="step-number">03 — Social Play</div>
+            <h2>Live Multiplayer Lobby</h2>
+            <p>Music is a social experience. BeatMaster features a fully synchronized real-time multiplayer system. The host sets up the lobby, and friends scan a QR code to join from their own devices instantly.</p>
+            <p>This virality means that for every host with the app, multiple new potential users are exposed to the Apple Music integrations via the shared trivia session.</p>
+        </div>
+        <div class="step-image">
+            <img src="assets/lobby.png" alt="Multiplayer Lobby">
+        </div>
+    </div>
+
+    <!-- Step 4: Shuffling (Screen 2) -->
+    <div class="journey-step">
+        <div class="step-content">
+            <div class="step-number">04 — Preparation</div>
+            <h2>Dynamic Quiz Generation</h2>
+            <p>Once the game begins, BeatMaster securely queries the iTunes Search API and generates dynamic trivia questions on the fly—ensuring thousands of unique combinations.</p>
+            <p>The app filters through the selected decades and playlists to pick the perfect track and pairs it with one of multiple question types: <i>"Who is the artist?"</i>, <i>"What year?"</i>, or <i>"What's the title?"</i></p>
+        </div>
+        <div class="step-image">
+            <img src="assets/screen2.png" alt="Question Shuffling System">
+        </div>
+    </div>
+
+    <!-- Step 5: Gameplay (Screen 3) -->
+    <div class="journey-step">
+        <div class="step-content">
+            <div class="step-number">05 — Gameplay</div>
+            <h2>The Audio Core</h2>
+            <p>A virtual vinyl record drops, and the countdown begins. A crystal clear 30-second music preview provided by the Apple Music API plays in the background.</p>
+            <p>This is where the magic happens. Players aren't just reading trivia; they are actively vibing to the highest quality previews available on the market, reliving nostalgia or discovering completely new favorite artists.</p>
+        </div>
+        <div class="step-image">
+            <img src="assets/screen3.png" alt="Active Gameplay Timer">
+        </div>
+    </div>
+
+    <!-- Step 6: Resolution & Apple Music Call To Action (Screen 1) -->
+    <div class="journey-step">
+        <div class="step-content">
+            <div class="step-number" style="color: #FA243C;">06 — Conversion</div>
+            <h2>From Guess to Stream</h2>
+            <p>As soon as the timer ends, the resolution screen fades in. The player is presented with the correct answer layered over the beautifully rendered iTunes album cover art.</p>
+            
+            <div class="highlight-box apple-focus">
+                <div class="apple-icon">🎵</div>
+                <div>
+                    <h4>Direct Apple Music Integration</h4>
+                    <p>Right below the high-res cover art sits our primary Call-To-Action. A prominent <strong>"Listen on Apple Music"</strong> button seamlessly deep-links the user directly into the Apple Music app to listen to the full song, add it to their library, and drive continuous premium subscriptions to Apple's ecosystem.</p>
+                </div>
+            </div>
+        </div>
+        <div class="step-image apple-glow">
+            <img src="assets/screen1.png" alt="Resolution Screen with Apple Music Affiliate Button">
+        </div>
+    </div>
+
+</div>
+
+<footer>
+    <p>&copy; 2026 BeatMaster Development Team. Powered by the Apple Music Ecosystem.</p>
+</footer>
+
 </body>
 </html>
