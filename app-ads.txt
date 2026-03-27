@@ -1,5 +1,5 @@
 # === OWNER DOMAIN (WICHTIG!) ===
-ownerdomain=andreaspointecker-source.github.io/ 
+ownerdomain=andreaspointecker-source.github.io 
 
 # === GOOGLE ADMOB ===
 google.com, pub-8395881050338794, DIRECT, f08c47fec0942fa0
