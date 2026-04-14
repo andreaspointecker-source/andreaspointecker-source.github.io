@@ -21,15 +21,17 @@
             background-color: var(--bg-color);
             color: var(--text-main);
             line-height: 1.7;
-            padding: 60px 20px;
-            max-width: 900px;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 800px;
             margin: 0 auto;
-            -webkit-font-smoothing: antialiased;
         }
 
         header {
             margin-bottom: 60px;
-            text-align: left;
+            text-align: center;
         }
 
         .badge {
@@ -39,115 +41,120 @@
             padding: 8px 16px;
             border-radius: 30px;
             font-weight: 600;
-            font-size: 0.8rem;
+            font-size: 0.9rem;
             letter-spacing: 1px;
             border: 1px solid rgba(255, 140, 0, 0.3);
-            margin-bottom: 20px;
+            margin-bottom: 24px;
         }
 
-        h1 {
-            font-size: 3.5rem;
-            font-weight: 800;
-            margin-bottom: 10px;
-            letter-spacing: -1.5px;
-        }
+        h1 { font-size: 3rem; font-weight: 800; margin-bottom: 10px; }
+        .last-updated { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 40px; }
 
-        h1 span { color: var(--primary-accent); }
+        section {
+            background-color: var(--surface-color);
+            padding: 40px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
 
         h2 {
+            color: var(--primary-accent);
             font-size: 1.8rem;
-            margin: 40px 0 20px;
-            color: var(--primary-accent);
-            font-weight: 700;
-        }
-
-        h3 {
-            font-size: 1.2rem;
-            margin: 25px 0 15px;
-            color: #FFFFFF;
-        }
-
-        p {
-            color: var(--text-secondary);
             margin-bottom: 20px;
-            font-weight: 300;
+            display: flex;
+            align-items: center;
+            gap: 15px;
         }
 
-        .card {
-            background-color: var(--surface-color);
-            padding: 30px;
-            border-radius: 16px;
-            margin-bottom: 30px;
-            border: 1px solid rgba(255,255,255,0.05);
-        }
+        h3 { color: #fff; margin: 25px 0 10px 0; font-size: 1.2rem; }
 
-        a {
-            color: var(--primary-accent);
-            text-decoration: none;
+        p { color: var(--text-secondary); margin-bottom: 15px; }
+        
+        ul { margin-left: 20px; color: var(--text-secondary); margin-bottom: 20px; }
+        li { margin-bottom: 8px; }
+
+        a { color: var(--primary-accent); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 40px;
+            color: var(--text-secondary);
             font-weight: 600;
         }
 
-        a:hover { text-decoration: underline; }
-
         footer {
-            margin-top: 80px;
-            padding-top: 40px;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
             text-align: center;
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-        }
-
-        .back-link {
-            display: inline-flex;
-            align-items: center;
-            margin-bottom: 40px;
+            margin-top: 60px;
             color: var(--text-secondary);
             font-size: 0.9rem;
-            transition: color 0.3s;
         }
-
-        .back-link:hover { color: var(--primary-accent); }
     </style>
 </head>
 <body>
 
-<a href="index.html" class="back-link">← Return to Home</a>
+<div class="container">
+    <a href="index.html" class="back-link">← Return to Home</a>
+    
+    <header>
+        <div class="badge">Legal Documentation</div>
+        <h1>Privacy Policy</h1>
+        <p class="last-updated">Last Updated: April 2026</p>
+    </header>
 
-<header>
-    <div class="badge">Legal Documentation</div>
-    <h1>Privacy <span>Policy</span></h1>
-    <p>Last Updated: March 2026</p>
-</header>
+    <section>
+        <h2>1. Data Autonomy</h2>
+        <p>We respect your privacy. BeatMaster is built with the principle of minimal data collection. We do not sell your personal data to third parties.</p>
+        <p>Most of the game data (scores, custom player names) is stored locally on your device unless you use the "BeatMaster Live" multiplayer feature.</p>
+    </section>
 
-<div class="card">
-    <h2>1. Data Autonomy</h2>
-    <p>We respect your privacy. BeatMaster is built with the principle of minimal data collection. We do not sell your personal data to third parties.</p>
+    <section>
+        <h2>2. Third-Party Integrations</h2>
+        
+        <h3>Apple Music & iTunes API</h3>
+        <p>Our application utilizes the Apple Music and iTunes Search API to provide high-quality music previews and cover art. Interaction with these services is governed by Apple's own privacy policies. We do not store your Apple Music library data or credentials on our servers.</p>
+
+        <h3>Advertising & Mediation</h3>
+        <p>To keep the app free, we display advertisements via Google AdMob and its mediation partners. These partners may use device identifiers (like Advertising IDs) to serve personalized ads and measure performance.</p>
+        <ul>
+            <li><strong>Google AdMob:</strong> <a href="https://policies.google.com/privacy" target="_blank">Privacy Policy</a></li>
+            <li><strong>Unity Ads:</strong> <a href="https://unity.com/legal/privacy-policy" target="_blank">Privacy Policy</a></li>
+            <li><strong>InMobi:</strong> <a href="https://www.inmobi.com/privacy-policy/" target="_blank">Privacy Policy</a></li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>3. Firebase Services</h2>
+        <p>We use Google Firebase to power the following core features of the app:</p>
+        <ul>
+            <li><strong>Cloud Messaging (FCM):</strong> To send push notifications regarding game updates or daily challenges.</li>
+            <li><strong>Cloud Firestore:</strong> To facilitate real-time multiplayer lobbies and temporary game states in "BeatMaster Live" mode.</li>
+            <li><strong>Crashlytics:</strong> To receive anonymous crash reports so we can improve app stability.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>4. Your Rights (GDPR / DSGVO)</h2>
+        <p>If you are located in the European Economic Area (EEA), you have certain data protection rights, including:</p>
+        <ul>
+            <li>The right to access, update or delete the info we have on you.</li>
+            <li>The right of rectification.</li>
+            <li>The right to object.</li>
+        </ul>
+        <p>Since we do not require accounts for standard play, most data is stored on your device and can be cleared by deleting the app or using the "Reset App Data" function in the settings.</p>
+    </section>
+
+    <section>
+        <h2>5. Contact Us</h2>
+        <p>If you have any questions about this Privacy Policy, please contact us:</p>
+        <p>Email: <a href="mailto:andreas.pointecker@gmail.com">andreas.pointecker@gmail.com</a></p>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 BeatMaster. All rights reserved.</p>
+    </footer>
 </div>
-
-<h2>2. Third-Party Integrations</h2>
-
-<div class="card">
-    <h3>Apple Music & iTunes API</h3>
-    <p>Our application utilizes the Apple Music and iTunes Search API to provide high-quality music previews and cover art. Interaction with these services is governed by Apple's own privacy policies. We do not store your Apple Music library data or credentials on our servers.</p>
-</div>
-
-<div class="card">
-    <h3>Google AdMob</h3>
-    <p>To keep the application free for everyone, we display advertisements via Google AdMob. Google may use advertising identifiers to serve relevant ads. You can manage your ad preferences through your Android device settings.</p>
-</div>
-
-<div class="card">
-    <h3>Firebase Cloud Firestore</h3>
-    <p>Our real-time multiplayer lobbies are powered by Firebase. We generate anonymous session IDs to synchronize game states between players. No permanent personally identifiable information (PII) is required to play.</p>
-</div>
-
-<h2>3. Contact Us</h2>
-<p>If you have any questions regarding how we handle your data, feel free to reach out to us at <strong>Andreaspointecker@gmail.com</strong>.</p>
-
-<footer>
-    <p>&copy; 2026 BeatMaster Development Team. Transparent. Secure. Playful.</p>
-</footer>
 
 </body>
 </html>
