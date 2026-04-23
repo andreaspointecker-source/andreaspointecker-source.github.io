@@ -355,9 +355,11 @@ h1, h2, h3 {
 }
 
 @keyframes shuffleAnim {
-  0% { transform: scale(0.8) translate(-150%, 0); opacity: 0; }
-  50% { transform: scale(1.1) translate(0, 0); opacity: 1; }
-  100% { transform: scale(0.8) translate(150%, 0); opacity: 0; }
+  0% { transform: scale(0.6) translate(-100%, -50%) rotate(-20deg); opacity: 0; }
+  25% { transform: scale(1) translate(0, 0) rotate(0deg); opacity: 1; }
+  50% { transform: scale(0.6) translate(100%, 50%) rotate(20deg); opacity: 0; }
+  75% { transform: scale(1) translate(0, 0) rotate(0deg); opacity: 1; }
+  100% { transform: scale(0.6) translate(-100%, -50%) rotate(-20deg); opacity: 0; }
 }
 
 .question-reveal {
@@ -498,6 +500,47 @@ h1, h2, h3 {
 
 .feature-image:hover img {
   transform: translateY(-10px) rotate(2deg);
+}
+
+/* Buttons */
+.btn-primary {
+  background: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
+  color: var(--text-on-primary);
+  border: none;
+  padding: 1.2rem 2.5rem;
+  border-radius: 16px;
+  font-weight: 900;
+  font-size: 1.3rem;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  margin-top: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 10px 20px rgba(255, 140, 0, 0.3);
+}
+
+.btn-primary:hover {
+  transform: scale(1.05) translateY(-2px);
+  box-shadow: 0 15px 30px rgba(255, 140, 0, 0.5);
+}
+
+.btn-primary:active {
+  transform: scale(0.95);
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 0.8rem 1.5rem;
+  border-radius: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.2);
 }
 
 /* Responsive */

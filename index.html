@@ -29,18 +29,17 @@
   <main class="container">
     <section class="hero">
       <h1 class="gradient-text">Fühl den Beat.<br>Meister das Quiz.</h1>
-      <p>Teste dein Musikwissen in Echtzeit! Höre Song-Schnipsel aus allen Jahrzehnten und beweise, dass du der wahre Beatmaster bist.</p>
       
       <div class="phone-frame">
         <div class="phone-notch"></div>
         
         <!-- Start Screen -->
         <div id="start-screen" class="game-card">
-          <div style="margin-top: 4rem;">
-            <h2 class="game-title" style="color: white; font-size: 1.5rem; margin-bottom: 1rem;">Beatmaster Lite</h2>
-            <p style="font-size: 0.9rem; margin-bottom: 2rem;">Spiele 3 Runden mit unseren Starter-Songs und teste deine Skills!</p>
+          <div style="margin-top: 6rem;">
+            <h2 class="game-title" style="color: white; font-size: 1.8rem; margin-bottom: 1.5rem;">Beatmaster Lite</h2>
+            <p style="font-size: 0.9rem; margin-bottom: 3rem; color: var(--text-secondary);">Erkenne die Songs in 3 spannenden Demorunden!</p>
           </div>
-          <button id="start-btn" class="btn-primary" style="width: 100%;">Spiel starten</button>
+          <button id="start-btn" class="btn-primary" style="width: 100%;">JETZT SPIELEN</button>
         </div>
 
         <!-- Game Screen -->
@@ -88,9 +87,10 @@
           <div id="result-screen" class="result-reveal">
             <img id="result-cover" src="" alt="Album Cover" class="result-cover">
             <div class="result-info">
-              <h3 id="result-status" style="color: var(--accent-primary);">AUFLÖSUNG</h3>
-              <p id="correct-answer-text"></p>
+              <h3 id="result-status" style="color: var(--accent-primary); margin-bottom: 0.5rem;">AUFLÖSUNG</h3>
+              <p id="correct-answer-text" style="margin-bottom: 2rem;"></p>
             </div>
+            <button id="next-btn" class="btn-primary" style="width: 100%;">WEITER</button>
           </div>
 
           <p id="audio-status"></p>
@@ -99,11 +99,11 @@
 
         <!-- Final Screen -->
         <div id="final-screen" class="game-card" style="display: none;">
-          <div style="margin-top: 4rem; text-align: center;">
-            <h2 class="game-title" style="color: white; font-size: 1.5rem; margin-bottom: 1rem;">Top Performance!</h2>
-            <p style="font-size: 0.8rem; margin-bottom: 2rem;">Du hast alle Starter-Songs gehört. Hol dir jetzt die volle Erfahrung mit tausenden Songs!</p>
-            <a href="https://play.google.com/store/apps/details?id=com.pointe.beatmaster" class="btn-primary" style="text-decoration: none; display: block;">Jetzt Gratis Laden</a>
-            <button id="restart-btn" style="background: none; border: none; color: var(--text-secondary); margin-top: 2rem; cursor: pointer;">Nochmal spielen</button>
+          <div style="margin-top: 6rem; text-align: center;">
+            <h2 class="game-title" style="color: white; font-size: 1.8rem; margin-bottom: 1.5rem;">Geschafft!</h2>
+            <p style="font-size: 0.9rem; margin-bottom: 3rem; color: var(--text-secondary);">Du hast ein Ohr für Hits! Hol dir jetzt die App für mehr.</p>
+            <a href="https://play.google.com/store/apps/details?id=com.pointe.beatmaster" class="btn-primary" style="text-decoration: none; display: block;">APP LADEN</a>
+            <button id="restart-btn" style="background: none; border: none; color: var(--text-secondary); margin-top: 2rem; cursor: pointer; text-decoration: underline;">Nochmal versuchen</button>
           </div>
         </div>
       </div>
@@ -119,27 +119,12 @@
           <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&q=80&w=600" alt="Music App">
         </div>
       </div>
-      
-      <div class="feature-item">
-        <div class="feature-content">
-          <h2 class="gradient-text">Riesige Bibliothek</h2>
-          <p>Von den 60ern bis zu den heutigen Charts. Unsere kuratierten Playlists decken jedes Genre ab.</p>
-        </div>
-        <div class="feature-image">
-          <img src="https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?auto=format&fit=crop&q=80&w=600" alt="Playlists">
-        </div>
-      </div>
     </section>
   </main>
 
   <footer style="background: var(--surface-dark); padding: 4rem 0; margin-top: 4rem;">
     <div class="container" style="text-align: center;">
       <div class="logo" style="margin-bottom: 2rem;">BEAT<span class="gradient-text">MASTER</span></div>
-      <div style="display: flex; justify-content: center; gap: 2rem; margin-bottom: 2rem;">
-        <a href="privacy.html" style="color: var(--text-secondary); text-decoration: none;">Datenschutz</a>
-        <a href="#" style="color: var(--text-secondary); text-decoration: none;">Impressum</a>
-        <a href="#" style="color: var(--text-secondary); text-decoration: none;">Kontakt</a>
-      </div>
       <p style="color: var(--text-secondary); font-size: 0.8rem;">&copy; 2026 Beatmaster. Alle Rechte vorbehalten.</p>
     </div>
   </footer>
@@ -170,14 +155,16 @@
     ];
 
     let currentRoundIndex = 0;
+    let musicTimer;
+
     const startBtn = document.getElementById('start-btn');
     const restartBtn = document.getElementById('restart-btn');
+    const nextBtn = document.getElementById('next-btn');
     const startScreen = document.getElementById('start-screen');
     const gameScreen = document.getElementById('game-screen');
     const finalScreen = document.getElementById('final-screen');
     
     const audio = document.getElementById('song-preview');
-    const audioStatus = document.getElementById('audio-status');
     const vinylPlayer = document.getElementById('vinyl-player');
     const vinylArt = document.getElementById('vinyl-art');
     const vinylWrapper = document.getElementById('vinyl-wrapper');
@@ -197,6 +184,15 @@
 
     startBtn.addEventListener('click', startGame);
     restartBtn.addEventListener('click', startGame);
+    nextBtn.addEventListener('click', () => {
+      currentRoundIndex++;
+      if (currentRoundIndex < songs.length) {
+        loadRound();
+      } else {
+        gameScreen.style.display = 'none';
+        finalScreen.style.display = 'flex';
+      }
+    });
 
     function startGame() {
       currentRoundIndex = 0;
@@ -213,7 +209,6 @@
       currentRoundEl.textContent = currentRoundIndex + 1;
       progressBar.style.width = ((currentRoundIndex) / songs.length * 100) + '%';
       
-      // Reset UI
       resultScreen.style.display = 'none';
       vinylPlayer.style.display = 'none';
       questionReveal.style.display = 'none';
@@ -223,10 +218,12 @@
       // Phase 1: Shuffle
       shuffleContainer.style.display = 'flex';
       const cards = document.querySelectorAll('.shuffle-card');
-      cards.forEach(c => c.classList.add('animating'));
+      cards.forEach((c, idx) => {
+        c.style.animationDelay = (idx * 0.1) + 's';
+        c.classList.add('animating');
+      });
       
       setTimeout(() => {
-        // Phase 2: Reveal Question
         cards.forEach(c => c.classList.remove('animating'));
         shuffleContainer.style.display = 'none';
         
@@ -236,14 +233,12 @@
         phaseBadge.textContent = "DEINE FRAGE";
         
         setTimeout(() => {
-          // Phase 3: Countdown
           questionReveal.style.display = 'none';
           startCountdown(() => {
-            // Phase 4: Music
             playMusic(song);
           });
         }, 1500);
-      }, 2000);
+      }, 2400); // App-authentic shuffle duration
     }
 
     function startCountdown(callback) {
@@ -260,16 +255,6 @@
           countdownOverlay.style.display = 'none';
           callback();
         }
-      }, 8000 / 8); // Fast 3s countdown
-      
-      // Actually 3 real seconds
-      let realCount = 3;
-      const realInterval = setInterval(() => {
-        realCount--;
-        countdownNumber.textContent = realCount;
-        if (realCount === 0) {
-           clearInterval(realInterval);
-        }
       }, 1000);
     }
 
@@ -278,18 +263,17 @@
       vinylPlayer.style.display = 'flex';
       vinylArt.src = song.cover;
       audio.src = song.preview;
+      progressFg.style.strokeDashoffset = 754;
       
       audio.play().then(() => {
         vinylWrapper.classList.add('spinning');
         vinylArm.classList.add('active');
-        startProgress(5000); // Only play 5s for the demo
+        startProgress(30000); // Full 30s
+        
+        musicTimer = setTimeout(showResolution, 30000);
       }).catch(() => {
-        audioStatus.textContent = "Audio konnte nicht geladen werden";
-        setTimeout(showResolution, 2000);
+        showResolution();
       });
-
-      // Auto resolution after 5s
-      setTimeout(showResolution, 5000);
     }
 
     function startProgress(duration) {
@@ -299,11 +283,12 @@
         const progress = Math.min(elapsed / duration, 1);
         const offset = 754 - (progress * 754);
         progressFg.style.strokeDashoffset = offset;
-        if (progress >= 1) clearInterval(interval);
+        if (progress >= 1 || resultScreen.style.display !== 'none') clearInterval(interval);
       }, 50);
     }
 
     function showResolution() {
+      clearTimeout(musicTimer);
       audio.pause();
       vinylWrapper.classList.remove('spinning');
       vinylArm.classList.remove('active');
@@ -314,16 +299,6 @@
       correctAnswerText.innerHTML = `<strong>${song.title}</strong><br>${song.artist} (${song.year})`;
       
       resultScreen.style.display = 'flex';
-      
-      setTimeout(() => {
-        currentRoundIndex++;
-        if (currentRoundIndex < songs.length) {
-          loadRound();
-        } else {
-          gameScreen.style.display = 'none';
-          finalScreen.style.display = 'flex';
-        }
-      }, 3000); // 3s result pause
     }
   </script>
 </body>
