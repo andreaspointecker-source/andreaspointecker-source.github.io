@@ -90,7 +90,7 @@
             <div id="vinyl-wrapper" class="vinyl-wrapper">
               <img src="assets/images/platte.png" alt="Vinyl" class="vinyl-record">
               <div class="vinyl-art-overlay">
-                <img id="vinyl-art" src="" alt="Song Art">
+                <img id="vinyl-art" src="" alt="Song Art" style="width: 100%; height: 100%; object-fit: cover;">
               </div>
             </div>
             <img id="vinyl-arm" src="assets/images/arm.png" alt="Arm" class="vinyl-arm">
@@ -108,7 +108,6 @@
             </div>
             <button id="next-btn" class="btn-primary" style="width: 100%;">WEITER</button>
           </div>
-          <audio id="song-preview" preload="auto"></audio>
         </div>
 
         <!-- Final Screen -->
@@ -130,7 +129,7 @@
           <p>Tritt gegen Freunde oder Spieler weltweit an. Wer erkennt den Song zuerst? Jede Sekunde zählt!</p>
         </div>
         <div class="feature-image">
-          <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&q=80&w=600" alt="Music App">
+          <img id="feat-img-1" src="" alt="Multiplayer">
         </div>
       </div>
       
@@ -140,7 +139,7 @@
           <p>Von den 60ern bis zu den heutigen Charts. Unsere kuratierten Playlists decken jedes Genre ab.</p>
         </div>
         <div class="feature-image">
-          <img src="https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?auto=format&fit=crop&q=80&w=600" alt="Playlists">
+          <img id="feat-img-2" src="" alt="Library">
         </div>
       </div>
     </section>
@@ -158,6 +157,9 @@
   </footer>
 
   <script>
+    // New Audio Context logic for better cross-browser compatibility
+    let audioPlayer = null;
+
     const songs = [
       {
         title: "Billie Jean",
@@ -182,6 +184,10 @@
       }
     ];
 
+    // Set Feature Images
+    document.getElementById('feat-img-1').src = 'multiplayer_feature_1776967662851.png';
+    document.getElementById('feat-img-2').src = 'library_feature_1776967677074.png';
+
     let currentRoundIndex = 0;
     let musicTimer;
 
@@ -192,7 +198,6 @@
     const gameScreen = document.getElementById('game-screen');
     const finalScreen = document.getElementById('final-screen');
     
-    const audio = document.getElementById('song-preview');
     const vinylPlayer = document.getElementById('vinyl-player');
     const vinylArt = document.getElementById('vinyl-art');
     const vinylWrapper = document.getElementById('vinyl-wrapper');
@@ -211,9 +216,9 @@
     const correctAnswerText = document.getElementById('correct-answer-text');
 
     startBtn.addEventListener('click', () => {
-      // UNLOCK AUDIO for browser
-      audio.load();
-      audio.play().then(() => audio.pause()).catch(() => {});
+      // Warm up audio context
+      audioPlayer = new Audio();
+      audioPlayer.play().catch(() => {});
       startGame();
     });
 
@@ -295,20 +300,24 @@
       phaseBadge.textContent = "HÖR GENAU HIN";
       vinylPlayer.style.display = 'flex';
       vinylArt.src = song.cover;
-      audio.src = song.preview;
+      
+      if (audioPlayer) {
+        audioPlayer.pause();
+      }
+      audioPlayer = new Audio(song.preview);
+      audioPlayer.crossOrigin = "anonymous";
+      
       progressFg.style.strokeDashoffset = 754;
       
-      // Load and Play
-      audio.load();
-      audio.play().then(() => {
+      audioPlayer.play().then(() => {
         vinylWrapper.classList.add('spinning');
         vinylArm.classList.add('active');
         startProgress(30000);
         musicTimer = setTimeout(showResolution, 30000);
       }).catch(err => {
-        console.error("Audio play error:", err);
-        // Fallback: show resolution if audio fails
-        setTimeout(showResolution, 2000);
+        console.error("Playback failed:", err);
+        // Fallback resolution
+        setTimeout(showResolution, 3000);
       });
     }
 
@@ -325,9 +334,11 @@
 
     function showResolution() {
       clearTimeout(musicTimer);
-      audio.pause();
-      vinylWrapper.classList.remove('spinning');
-      vinylArm.classList.remove('active');
+      if (audioPlayer) audioPlayer.pause();
+      
+      // HIDE VINYL PLAYER DURING RESOLUTION
+      vinylPlayer.style.display = 'none';
+      
       phaseBadge.textContent = "AUFLÖSUNG";
       
       const song = songs[currentRoundIndex];
