@@ -214,7 +214,6 @@
     const songMetaRes = document.getElementById('song-meta-res');
     const correctAnswerMain = document.getElementById('correct-answer-main');
     const resultQType = document.getElementById('result-q-type');
-    const appleMusicLink = document.getElementById('apple-music-link');
 
     startBtn.addEventListener('click', () => {
       audio.load();
@@ -344,7 +343,6 @@
       songTitleRes.textContent = song.title;
       songArtistRes.textContent = song.artist;
       songMetaRes.textContent = `${song.year} • ${song.genre} • ${song.playlist}`;
-      appleMusicLink.href = song.appleMusic;
       
       if (currentQType === "TITEL?") {
         resultQType.textContent = "WELCHER TITEL?";
