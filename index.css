@@ -470,15 +470,16 @@ h1, h2, h3 {
 /* Result Reveal (App Parity) */
 .result-reveal {
   position: absolute;
-  top: 0;
+  top: 70px; /* Below top bar */
   left: 0;
-  width: 100%;
-  height: 100%;
+  right: 0;
+  bottom: 0;
   display: none;
   flex-direction: column;
   z-index: 50;
   background: var(--bg-start);
   animation: slideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
 }
 
 @keyframes slideIn {
@@ -501,11 +502,12 @@ h1, h2, h3 {
 .result-content {
   flex: 1;
   position: relative;
-  overflow: hidden;
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 1.5rem;
+  justify-content: flex-start;
 }
 
 .result-bg-blur {
@@ -523,21 +525,22 @@ h1, h2, h3 {
 
 .result-answer-badge {
   background: var(--accent-primary);
-  padding: 0.8rem 1.5rem;
-  border-radius: 15px;
-  margin-bottom: 2rem;
+  padding: 0.6rem 1.2rem;
+  border-radius: 12px;
+  margin-bottom: 1.2rem;
   width: 100%;
   text-align: center;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
 
 .result-cover-card {
-  width: 220px;
-  height: 220px;
-  border-radius: 20px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.6);
-  margin-bottom: 2rem;
+  width: 150px;
+  height: 150px;
+  border-radius: 15px;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.6);
+  margin-bottom: 1.5rem;
   object-fit: cover;
+  border: 1px solid rgba(255,255,255,0.1);
 }
 
 .result-info-box {
