@@ -26,7 +26,7 @@
           <span>App Store</span>
           <span class="coming-soon-badge">Bald da!</span>
         </div>
-        <a href="#" class="btn-store">
+        <a href="https://play.google.com/store/apps/details?id=com.pointe.beatmaster" class="btn-store">
           <svg viewBox="0 0 512 512" width="24" fill="currentColor"><path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm189.2 274.1L411 438.9c24.9-14.3 42-41.2 42-72.6V145.7c0-31.4-17.1-58.3-42-72.6L236.2 234.1l25.1 25.1-25.1 14.9zM325.3 277.7l60.1 60.1L104.6 499l220.7-221.3z"/></svg>
           <span>Google Play</span>
         </a>
@@ -65,6 +65,10 @@
           <audio id="song-preview"></audio>
         </div>
 
+        <div id="countdown-overlay" class="countdown-overlay" style="display: none;">
+          <div id="countdown-number" class="countdown-number">3</div>
+        </div>
+
         <div id="input-section" class="game-form">
           <div class="input-group">
             <label for="guess-title">Titel</label>
@@ -99,7 +103,7 @@
                 App Store
                 <span class="coming-soon-badge">Bald da!</span>
             </div>
-            <a href="#" class="btn-store">Google Play</a>
+            <a href="https://play.google.com/store/apps/details?id=com.pointe.beatmaster" class="btn-store">Google Play</a>
         </div>
         <button id="restart-btn" class="btn-primary" style="margin-top: 2rem; background: var(--surface);">Nochmal spielen</button>
       </div>
@@ -201,6 +205,9 @@
     const resultStatus = document.getElementById('result-status');
     const correctAnswerText = document.getElementById('correct-answer-text');
 
+    const countdownOverlay = document.getElementById('countdown-overlay');
+    const countdownNumber = document.getElementById('countdown-number');
+
     startBtn.addEventListener('click', startGame);
     checkBtn.addEventListener('click', checkAnswer);
     nextBtn.addEventListener('click', nextRound);
@@ -215,6 +222,23 @@
       loadRound();
     }
 
+    function startCountdown(callback) {
+      countdownOverlay.style.display = 'flex';
+      let count = 3;
+      countdownNumber.textContent = count;
+      
+      const interval = setInterval(() => {
+        count--;
+        if (count > 0) {
+          countdownNumber.textContent = count;
+        } else {
+          clearInterval(interval);
+          countdownOverlay.style.display = 'none';
+          callback();
+        }
+      }, 1000);
+    }
+
     function loadRound() {
       const song = songs[currentRoundIndex];
       currentRoundEl.textContent = currentRoundIndex + 1;
@@ -225,20 +249,25 @@
       guessArtist.value = '';
       guessYear.value = '';
       
-      // Setup Audio
-      audio.src = song.preview;
-      audioStatus.textContent = "Hör genau hin...";
-      vinylArt.src = song.cover;
-      vinyl.classList.remove('spinning');
-      
-      inputSection.style.display = 'flex';
+      inputSection.style.display = 'none';
       resultScreen.style.display = 'none';
-      
-      audio.play().then(() => {
-        vinyl.classList.add('spinning');
-      }).catch(e => {
-        audioStatus.textContent = "Klicke zum Abspielen";
-        document.body.addEventListener('click', () => audio.play(), {once: true});
+      vinyl.classList.remove('spinning');
+      audioStatus.textContent = "Mach dich bereit...";
+
+      startCountdown(() => {
+        // Setup Audio
+        audio.src = song.preview;
+        audioStatus.textContent = "Hör genau hin...";
+        vinylArt.src = song.cover;
+        
+        inputSection.style.display = 'flex';
+        
+        audio.play().then(() => {
+          vinyl.classList.add('spinning');
+        }).catch(e => {
+          audioStatus.textContent = "Klicke zum Abspielen";
+          document.body.addEventListener('click', () => audio.play(), {once: true});
+        });
       });
     }
 
@@ -261,6 +290,7 @@
       
       inputSection.style.display = 'none';
       resultScreen.style.display = 'block';
+      nextBtn.style.display = 'none'; // Hide next button initially
       
       resultCover.src = song.cover;
       correctAnswerText.innerHTML = `<strong>${song.title}</strong> von <strong>${song.artist}</strong> (${song.year})`;
@@ -275,12 +305,16 @@
         resultStatus.textContent = "Das war wohl nichts...";
         resultStatus.style.color = "#ff4444";
       }
-      
-      if (currentRoundIndex === songs.length - 1) {
-        nextBtn.textContent = "Ergebnis ansehen";
-      } else {
-        nextBtn.textContent = "Nächste Runde";
-      }
+
+      // Show next button after 3 seconds
+      setTimeout(() => {
+        nextBtn.style.display = 'inline-block';
+        if (currentRoundIndex === songs.length - 1) {
+          nextBtn.textContent = "Ergebnis ansehen";
+        } else {
+          nextBtn.textContent = "Nächste Runde";
+        }
+      }, 3000);
     }
 
     function nextRound() {
