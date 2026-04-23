@@ -47,14 +47,10 @@
 
         <!-- Game Screen -->
         <div id="game-screen" class="game-card" style="display: none;">
-          <div class="game-top-bar" style="display: flex; justify-content: space-between; width: 100%; align-items: center; padding: 0.5rem 0;">
-            <div style="background: rgba(255,255,255,0.05); padding: 0.4rem 0.8rem; border-radius: 50px; font-size: 0.6rem; font-weight: 800; color: white;">HOME</div>
-            <div id="phase-badge-top" style="font-size: 0.7rem; font-weight: 800; color: var(--accent-primary); letter-spacing: 1px;">FRAGE</div>
+          <div class="game-top-bar" style="display: flex; justify-content: space-between; width: 100%; align-items: center; padding: 1rem 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.1);">
+            <div onclick="location.reload()" style="background: rgba(255,255,255,0.05); padding: 0.4rem 0.8rem; border-radius: 50px; font-size: 0.6rem; font-weight: 800; color: white; cursor: pointer;">HOME</div>
+            <div id="phase-badge-top" style="font-size: 0.7rem; font-weight: 800; color: var(--accent-primary); letter-spacing: 1px; text-transform: uppercase;">FRAGE</div>
             <div style="background: rgba(255,255,255,0.05); padding: 0.4rem 0.8rem; border-radius: 50px; font-size: 0.6rem; font-weight: 800; color: white;"><span id="current-round">1</span> / 3</div>
-          </div>
-
-          <div class="game-header">
-            <div id="q-badge" style="display: inline-block; padding: 0.5rem 1.5rem; border: 2px solid var(--accent-primary); border-radius: 50px; color: var(--accent-primary); font-weight: 900; font-size: 0.8rem; margin: 1rem 0;">WIE HEISST DER SONG?</div>
           </div>
 
           <div id="shuffle-container" class="shuffle-container">
@@ -90,8 +86,8 @@
             <div class="result-header">AUFLÖSUNG</div>
             <div class="result-content">
               <div id="result-bg" class="result-bg-blur"></div>
-              <div style="background: var(--accent-primary); padding: 0.5rem 1.5rem; border-radius: 15px; margin-bottom: 2rem; width: 100%; text-align: center;">
-                <div id="result-q-type" style="font-size: 0.6rem; font-weight: 800; color: rgba(0,0,0,0.6); margin-bottom: 0.2rem;">ANTWORT</div>
+              <div class="result-answer-badge">
+                <div id="result-q-type" style="font-size: 0.6rem; font-weight: 800; color: rgba(0,0,0,0.6); margin-bottom: 0.2rem; text-transform: uppercase;">ANTWORT</div>
                 <div id="correct-answer-main" style="font-size: 1.5rem; font-weight: 900; color: #000;">1982</div>
               </div>
               <img id="result-cover" src="" alt="Album Cover" class="result-cover-card">
