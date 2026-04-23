@@ -14,7 +14,7 @@ bidmachine.io,466,DIRECT
 
 #Replace the Publisher_ID below with your Admob Publisher ID
 
-google.com, Publisher_ID, DIRECT, f08c47fec0942fa0
+google.com, pub-4545187900888924, DIRECT, f08c47fec0942fa0
 
 #Meta-Audience
 
@@ -5028,4 +5028,8 @@ trustedstack.com, TS677PGY3, RESELLER
 
 adyoulike.com, 721f20f70910d379981dc19ec5da709f, RESELLER
 
+<<<<<<< HEAD
 axonix.com, 59204, RESELLER
+=======
+axonix.com, 59204, RESELLER
+>>>>>>> fbc7531 (Update app-ads.txt with AdMob Publisher ID for Appodeal)
