@@ -18,7 +18,7 @@
         BEAT<span class="gradient-text">MASTER</span>
       </div>
       <div class="store-buttons" style="margin: 0;">
-        <a href="https://play.google.com/store/apps/details?id=com.pointe.beatmaster" class="btn-store" target="_blank">
+        <a href="https://play.google.com/store/apps/details?id=com.pointe.beatmaster" class="btn-store" target="_blank" style="padding: 0.5rem 1rem; font-size: 0.8rem;">
           Google Play
         </a>
       </div>
@@ -30,24 +30,6 @@
       <h1 class="gradient-text">Fühl den Beat.<br>Meister das Quiz.</h1>
       <p>Höre Song-Schnipsel und beweise dein Wissen. Das ultimative Musik-Quiz für dein Smartphone.</p>
       
-      <div class="store-buttons">
-        <a href="https://play.google.com/store/apps/details?id=com.pointe.beatmaster" class="btn-store" target="_blank">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.61 3,21.09 3,20.5M16.81,15.12L18.67,16.2C20.13,17.03 20.13,18.97 18.67,19.8L15.19,21.81L14.74,13.05L16.81,15.12M20.13,5.2C21.59,6.03 21.59,7.97 20.13,8.8L18.67,9.88L16.59,11.96L14.74,10.95L15.19,2.19L18.67,4.2L20.13,5.2M4.75,2.1L12.7,10.05L14.15,11.5L4.75,20.9C4.42,20.73 4.16,20.45 4.05,20.1L13.45,10.7L4.05,1.3C4.16,0.95 4.42,0.67 4.75,0.5"/></svg>
-          <div>
-            <div style="font-size: 0.7rem; font-weight: 400;">JETZT BEI</div>
-            <div style="font-size: 1.1rem;">Google Play</div>
-          </div>
-        </a>
-        <div class="btn-store disabled">
-          <span class="coming-soon-badge">BALD</span>
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.94,2C16.07,3.17 15.6,4.35 14.9,5.19C14.21,6.04 13.07,6.7 11.95,6.61C11.8,5.46 12.36,4.26 13,3.5Z"/></svg>
-          <div>
-            <div style="font-size: 0.7rem; font-weight: 400;">Laden im</div>
-            <div style="font-size: 1.1rem;">App Store</div>
-          </div>
-        </div>
-      </div>
-
       <div class="phone-frame">
         <div class="phone-notch"></div>
         
@@ -65,19 +47,24 @@
 
         <!-- Game Screen -->
         <div id="game-screen" class="game-card" style="display: none;">
-          <div id="phase-badge" class="phase-badge">BEREIT?</div>
-          
+          <div class="game-top-bar" style="display: flex; justify-content: space-between; width: 100%; align-items: center; padding: 0.5rem 0;">
+            <div style="background: rgba(255,255,255,0.05); padding: 0.4rem 0.8rem; border-radius: 50px; font-size: 0.6rem; font-weight: 800; color: white;">HOME</div>
+            <div id="phase-badge-top" style="font-size: 0.7rem; font-weight: 800; color: var(--accent-primary); letter-spacing: 1px;">FRAGE</div>
+            <div style="background: rgba(255,255,255,0.05); padding: 0.4rem 0.8rem; border-radius: 50px; font-size: 0.6rem; font-weight: 800; color: white;"><span id="current-round">1</span> / 3</div>
+          </div>
+
           <div class="game-header">
-            <div class="game-title">Runde <span id="current-round">1</span>/3</div>
-            <div class="game-progress">
-              <div id="progress-bar" class="progress-bar"></div>
-            </div>
+            <div id="q-badge" style="display: inline-block; padding: 0.5rem 1.5rem; border: 2px solid var(--accent-primary); border-radius: 50px; color: var(--accent-primary); font-weight: 900; font-size: 0.8rem; margin: 1rem 0;">WIE HEISST DER SONG?</div>
           </div>
 
           <div id="shuffle-container" class="shuffle-container">
-            <div class="shuffle-card" id="card-1">TITEL?</div>
-            <div class="shuffle-card" id="card-2">INTERPRET?</div>
-            <div class="shuffle-card" id="card-3">JAHR?</div>
+            <div class="shuffle-header">KARTEN WERDEN GEMISCHT</div>
+            <div class="shuffle-cards-stack">
+              <div class="shuffle-card" id="card-1"></div>
+              <div class="shuffle-card" id="card-2"></div>
+              <div class="shuffle-card" id="card-3"></div>
+            </div>
+            <div class="shuffle-footer">Gleich geht's los...</div>
           </div>
 
           <div id="question-reveal" class="question-reveal">TITEL?</div>
@@ -89,9 +76,7 @@
             </svg>
             <div id="vinyl-wrapper" class="vinyl-wrapper">
               <img src="assets/images/platte.png" alt="Vinyl" class="vinyl-record">
-              <div class="vinyl-art-overlay">
-                <img id="vinyl-art" src="" alt="Song Art" style="width: 100%; height: 100%; object-fit: cover;">
-              </div>
+              <div class="vinyl-art-overlay"></div>
             </div>
             <img id="vinyl-arm" src="assets/images/arm.png" alt="Arm" class="vinyl-arm">
           </div>
@@ -100,14 +85,32 @@
             <div id="countdown-number" class="countdown-number">3</div>
           </div>
 
+          <!-- Result Reveal (New Design) -->
           <div id="result-screen" class="result-reveal">
-            <img id="result-cover" src="" alt="Album Cover" class="result-cover">
-            <div class="result-info">
-              <h3 id="result-status" style="color: var(--accent-primary); margin-bottom: 0.5rem;">AUFLÖSUNG</h3>
-              <p id="correct-answer-text" style="margin-bottom: 2rem;"></p>
+            <div class="result-header">AUFLÖSUNG</div>
+            <div class="result-content">
+              <div id="result-bg" class="result-bg-blur"></div>
+              <div style="background: var(--accent-primary); padding: 0.5rem 1.5rem; border-radius: 15px; margin-bottom: 2rem; width: 100%; text-align: center;">
+                <div id="result-q-type" style="font-size: 0.6rem; font-weight: 800; color: rgba(0,0,0,0.6); margin-bottom: 0.2rem;">ANTWORT</div>
+                <div id="correct-answer-main" style="font-size: 1.5rem; font-weight: 900; color: #000;">1982</div>
+              </div>
+              <img id="result-cover" src="" alt="Album Cover" class="result-cover-card">
+              <div class="result-info-box">
+                <h2 id="song-title-res">Billie Jean</h2>
+                <h3 id="song-artist-res">Michael Jackson</h3>
+                <p id="song-meta-res">1982 • Pop • 80s Hits</p>
+                <a id="apple-music-link" href="#" target="_blank" class="apple-music-btn">
+                  <svg style="width: 14px; height: 14px;" viewBox="0 0 24 24" fill="currentColor"><path d="M12,2C6.48,2,2,6.48,2,12s4.48,10,10,10,10-4.48,10-10S17.52,2,12,2zm0,14.5c-2.49,0-4.5-2.01-4.5-4.5S9.51,7.5,12,7.5s4.5,2.01,4.5,4.5-2.01,4.5-4.5,4.5z"/></svg>
+                  Auf Apple Music anhören
+                </a>
+              </div>
             </div>
-            <button id="next-btn" class="btn-primary" style="width: 100%;">WEITER</button>
+            <div class="result-footer">
+              <button id="next-btn" class="btn-primary" style="width: 100%;">NÄCHSTE RUNDE</button>
+            </div>
           </div>
+          
+          <audio id="audio-engine" preload="auto"></audio>
         </div>
 
         <!-- Final Screen -->
@@ -129,7 +132,7 @@
           <p>Tritt gegen Freunde oder Spieler weltweit an. Wer erkennt den Song zuerst? Jede Sekunde zählt!</p>
         </div>
         <div class="feature-image">
-          <img id="feat-img-1" src="" alt="Multiplayer">
+          <img src="assets/gameplay.png" alt="Multiplayer">
         </div>
       </div>
       
@@ -139,7 +142,7 @@
           <p>Von den 60ern bis zu den heutigen Charts. Unsere kuratierten Playlists decken jedes Genre ab.</p>
         </div>
         <div class="feature-image">
-          <img id="feat-img-2" src="" alt="Library">
+          <img src="assets/playlists.png" alt="Playlists">
         </div>
       </div>
     </section>
@@ -148,48 +151,48 @@
   <footer style="background: var(--surface-dark); padding: 4rem 0; margin-top: 4rem;">
     <div class="container" style="text-align: center;">
       <div class="logo" style="margin-bottom: 2rem;">BEAT<span class="gradient-text">MASTER</span></div>
-      <div style="display: flex; justify-content: center; gap: 2rem; margin-bottom: 2rem;">
-        <a href="privacy.html" style="color: var(--text-secondary); text-decoration: none;">Datenschutz</a>
-        <a href="#" style="color: var(--text-secondary); text-decoration: none;">Impressum</a>
-      </div>
       <p style="color: var(--text-secondary); font-size: 0.8rem;">&copy; 2026 Beatmaster. Alle Rechte vorbehalten.</p>
     </div>
   </footer>
 
   <script>
-    // New Audio Context logic for better cross-browser compatibility
-    let audioPlayer = null;
-
+    // SONGS FROM FIREBASE
     const songs = [
       {
-        title: "Billie Jean",
-        artist: "Michael Jackson",
-        year: 1982,
-        cover: "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/8b/f1/50/8bf1503a-a4db-4fa6-a3a5-f919509acacd/14UMGIM43392.rgb.jpg/512x512bb.jpg",
-        preview: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioVideo122/v4/85/3d/8c/853d8c1e-3652-3d84-1f95-46f906571587/mzaf_1508216765103006450.plus.aac.p.m4a"
+        title: "The Scientist",
+        artist: "Coldplay",
+        year: 2002,
+        genre: "Pop",
+        playlist: "2000s Hits",
+        cover: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/b9/b4/2a/b9b42ad1-1e25-5096-da43-497a247e69a3/190295978051.jpg/512x512bb.jpg",
+        preview: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/ae/a6/27/aea62715-e6ae-9562-ba81-1f969a2ee2fa/mzaf_9054259057357054559.plus.aac.p.m4a",
+        appleMusic: "https://music.apple.com/de/album/the-scientist/1122775993?i=1122776155&uo=4"
       },
       {
-        title: "Blinding Lights",
-        artist: "The Weeknd",
-        year: 2019,
-        cover: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/64/00/0a/64000a6e-4171-d40b-7f12-076159675276/20UMGIM13926.rgb.jpg/512x512bb.jpg",
-        preview: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioVideo115/v4/85/1e/8c/851e8cc3-c157-593b-e016-16986241b778/mzaf_10523450917013898083.plus.aac.p.m4a"
+        title: "Welcome to the Black Parade",
+        artist: "My Chemical Romance",
+        year: 2006,
+        genre: "Rock",
+        playlist: "2000s Hits",
+        cover: "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/56/99/8a/56998a1c-efe7-fdf0-2b1d-e2da88d8df52/093624917724.jpg/512x512bb.jpg",
+        preview: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview112/v4/3e/89/c3/3e89c31b-d115-21be-1433-a5879fd26ffb/mzaf_8935836115613487885.plus.aac.p.m4a",
+        appleMusic: "https://music.apple.com/de/album/welcome-to-the-black-parade/1156310650?i=1156310692&uo=4"
       },
       {
-        title: "Smells Like Teen Spirit",
-        artist: "Nirvana",
-        year: 1991,
-        cover: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/3d/9d/38/3d9d3811-71f0-3a0e-993d-9f539a5d7d3f/11UMGIM50529.rgb.jpg/512x512bb.jpg",
-        preview: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioVideo115/v4/6c/0e/41/6c0e4171-7009-178b-3b32-359f1f0a202d/mzaf_15077473767215286419.plus.aac.p.m4a"
+        title: "7 Days",
+        artist: "Craig David",
+        year: 2000,
+        genre: "R&B",
+        playlist: "2000s Hits",
+        cover: "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/60/1e/27/601e27d3-e057-fde1-6b33-aa839c4d2526/886446379371.jpg/512x512bb.jpg",
+        preview: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/2b/be/b6/2bbeb680-1c54-b291-9939-db84d606df38/mzaf_10024522447480986230.plus.aac.p.m4a",
+        appleMusic: "https://music.apple.com/de/album/7-days/1209606459?i=1209606571&uo=4"
       }
     ];
 
-    // Set Feature Images
-    document.getElementById('feat-img-1').src = 'multiplayer_feature_1776967662851.png';
-    document.getElementById('feat-img-2').src = 'library_feature_1776967677074.png';
-
     let currentRoundIndex = 0;
     let musicTimer;
+    let currentQType = "";
 
     const startBtn = document.getElementById('start-btn');
     const restartBtn = document.getElementById('restart-btn');
@@ -198,27 +201,31 @@
     const gameScreen = document.getElementById('game-screen');
     const finalScreen = document.getElementById('final-screen');
     
+    const audio = document.getElementById('audio-engine');
     const vinylPlayer = document.getElementById('vinyl-player');
-    const vinylArt = document.getElementById('vinyl-art');
     const vinylWrapper = document.getElementById('vinyl-wrapper');
     const vinylArm = document.getElementById('vinyl-arm');
     const progressFg = document.getElementById('progress-fg');
-    const progressBar = document.getElementById('progress-bar');
     const currentRoundEl = document.getElementById('current-round');
-    const phaseBadge = document.getElementById('phase-badge');
+    const phaseBadgeTop = document.getElementById('phase-badge-top');
     
     const shuffleContainer = document.getElementById('shuffle-container');
     const questionReveal = document.getElementById('question-reveal');
     const countdownOverlay = document.getElementById('countdown-overlay');
     const countdownNumber = document.getElementById('countdown-number');
     const resultScreen = document.getElementById('result-screen');
+    const resultBg = document.getElementById('result-bg');
     const resultCover = document.getElementById('result-cover');
-    const correctAnswerText = document.getElementById('correct-answer-text');
+    const songTitleRes = document.getElementById('song-title-res');
+    const songArtistRes = document.getElementById('song-artist-res');
+    const songMetaRes = document.getElementById('song-meta-res');
+    const correctAnswerMain = document.getElementById('correct-answer-main');
+    const resultQType = document.getElementById('result-q-type');
+    const appleMusicLink = document.getElementById('apple-music-link');
 
     startBtn.addEventListener('click', () => {
-      // Warm up audio context
-      audioPlayer = new Audio();
-      audioPlayer.play().catch(() => {});
+      audio.load();
+      audio.play().then(() => audio.pause()).catch(() => {});
       startGame();
     });
 
@@ -246,13 +253,12 @@
     function loadRound() {
       const song = songs[currentRoundIndex];
       currentRoundEl.textContent = currentRoundIndex + 1;
-      progressBar.style.width = ((currentRoundIndex) / songs.length * 100) + '%';
       
       resultScreen.style.display = 'none';
       vinylPlayer.style.display = 'none';
       questionReveal.style.display = 'none';
       countdownOverlay.style.display = 'none';
-      phaseBadge.textContent = "MISCHEN...";
+      phaseBadgeTop.textContent = "MISCHEN";
       
       shuffleContainer.style.display = 'flex';
       const cards = document.querySelectorAll('.shuffle-card');
@@ -265,18 +271,18 @@
         cards.forEach(c => c.classList.remove('animating'));
         shuffleContainer.style.display = 'none';
         
-        const qType = questionTypes[Math.floor(Math.random() * questionTypes.length)];
-        questionReveal.textContent = qType;
+        currentQType = questionTypes[Math.floor(Math.random() * questionTypes.length)];
+        questionReveal.textContent = currentQType;
         questionReveal.style.display = 'block';
-        phaseBadge.textContent = "DEINE FRAGE";
+        phaseBadgeTop.textContent = "DEINE FRAGE";
         
         setTimeout(() => {
           questionReveal.style.display = 'none';
           startCountdown(() => {
             playMusic(song);
           });
-        }, 1500);
-      }, 2400);
+        }, 3000);
+      }, 3000);
     }
 
     function startCountdown(callback) {
@@ -297,28 +303,27 @@
     }
 
     function playMusic(song) {
-      phaseBadge.textContent = "HÖR GENAU HIN";
+      phaseBadgeTop.textContent = "HÖR GENAU HIN";
       vinylPlayer.style.display = 'flex';
-      vinylArt.src = song.cover;
       
-      if (audioPlayer) {
-        audioPlayer.pause();
-      }
-      audioPlayer = new Audio(song.preview);
-      audioPlayer.crossOrigin = "anonymous";
+      audio.src = song.preview;
+      audio.load();
       
       progressFg.style.strokeDashoffset = 754;
       
-      audioPlayer.play().then(() => {
-        vinylWrapper.classList.add('spinning');
-        vinylArm.classList.add('active');
-        startProgress(30000);
-        musicTimer = setTimeout(showResolution, 30000);
-      }).catch(err => {
-        console.error("Playback failed:", err);
-        // Fallback resolution
-        setTimeout(showResolution, 3000);
-      });
+      // Attempt play after small delay to ensure loading
+      setTimeout(() => {
+        audio.play().then(() => {
+          vinylWrapper.classList.add('spinning');
+          vinylArm.classList.add('active');
+          startProgress(30000);
+          musicTimer = setTimeout(showResolution, 30000);
+        }).catch(err => {
+          console.error("Audio block:", err);
+          // Show resolution early if audio is blocked
+          setTimeout(showResolution, 4000);
+        });
+      }, 500);
     }
 
     function startProgress(duration) {
@@ -334,17 +339,32 @@
 
     function showResolution() {
       clearTimeout(musicTimer);
-      if (audioPlayer) audioPlayer.pause();
-      
-      // HIDE VINYL PLAYER DURING RESOLUTION
+      audio.pause();
       vinylPlayer.style.display = 'none';
       
-      phaseBadge.textContent = "AUFLÖSUNG";
-      
       const song = songs[currentRoundIndex];
+      
+      // Update Resolution UI
+      resultBg.style.backgroundImage = `url(${song.cover})`;
       resultCover.src = song.cover;
-      correctAnswerText.innerHTML = `<strong>${song.title}</strong><br>${song.artist} (${song.year})`;
+      songTitleRes.textContent = song.title;
+      songArtistRes.textContent = song.artist;
+      songMetaRes.textContent = `${song.year} • ${song.genre} • ${song.playlist}`;
+      appleMusicLink.href = song.appleMusic;
+      
+      if (currentQType === "TITEL?") {
+        resultQType.textContent = "WELCHER TITEL?";
+        correctAnswerMain.textContent = song.title;
+      } else if (currentQType === "INTERPRET?") {
+        resultQType.textContent = "WER IST DER INTERPRET?";
+        correctAnswerMain.textContent = song.artist;
+      } else {
+        resultQType.textContent = "AUS WELCHEM JAHR?";
+        correctAnswerMain.textContent = song.year;
+      }
+      
       resultScreen.style.display = 'flex';
+      phaseBadgeTop.textContent = "AUFLÖSUNG";
     }
   </script>
 </body>
