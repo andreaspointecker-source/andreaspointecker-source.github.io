@@ -134,19 +134,44 @@ h1, h2, h3 {
   height: 24px;
 }
 
-/* Phone Frame */
-.phone-frame {
-  width: 320px;
-  height: 640px;
-  background: #000;
-  border-radius: 40px;
-  border: 8px solid #222;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-  margin: 0 auto;
-  position: relative;
-  overflow: hidden;
+/* Lite Start Screen */
+.lite-start-content {
+  margin-top: 4rem;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1.5rem;
+}
+
+.lite-record-icon {
+  width: 120px;
+  height: 120px;
+  background: var(--surface-dark);
+  border-radius: 50%;
+  position: relative;
+  border: 4px solid var(--border);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 30px rgba(0,0,0,0.5);
+}
+
+.lite-record-icon::before {
+  content: '';
+  position: absolute;
+  width: 90%;
+  height: 90%;
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 50%;
+}
+
+.lite-record-icon .dot {
+  width: 20px;
+  height: 20px;
+  background: var(--accent-primary);
+  border-radius: 50%;
+  box-shadow: 0 0 15px var(--accent-primary);
 }
 
 .phone-notch {
@@ -543,13 +568,18 @@ h1, h2, h3 {
   background: rgba(255, 255, 255, 0.2);
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .hero h1 {
-    font-size: 2.5rem;
-  }
-  .store-buttons {
-    flex-direction: column;
-    width: 100%;
-  }
+/* Phone Frame */
+.phone-frame {
+  width: 320px;
+  height: 640px;
+  background: #111;
+  border-radius: 45px;
+  border: 12px solid #222;
+  box-shadow: 0 40px 100px -20px rgba(0, 0, 0, 0.8), 0 0 0 2px #333;
+  margin: 2rem auto;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  z-index: 10;
 }

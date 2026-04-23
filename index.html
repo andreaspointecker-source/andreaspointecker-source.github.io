@@ -18,8 +18,7 @@
         BEAT<span class="gradient-text">MASTER</span>
       </div>
       <div class="store-buttons" style="margin: 0;">
-        <a href="https://play.google.com/store/apps/details?id=com.pointe.beatmaster" class="btn-store" target="_blank" style="padding: 0.5rem 1rem; font-size: 0.8rem;">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.61 3,21.09 3,20.5M16.81,15.12L18.67,16.2C20.13,17.03 20.13,18.97 18.67,19.8L15.19,21.81L14.74,13.05L16.81,15.12M20.13,5.2C21.59,6.03 21.59,7.97 20.13,8.8L18.67,9.88L16.59,11.96L14.74,10.95L15.19,2.19L18.67,4.2L20.13,5.2M4.75,2.1L12.7,10.05L14.15,11.5L4.75,20.9C4.42,20.73 4.16,20.45 4.05,20.1L13.45,10.7L4.05,1.3C4.16,0.95 4.42,0.67 4.75,0.5"/></svg>
+        <a href="https://play.google.com/store/apps/details?id=com.pointe.beatmaster" class="btn-store" target="_blank">
           Google Play
         </a>
       </div>
@@ -29,17 +28,39 @@
   <main class="container">
     <section class="hero">
       <h1 class="gradient-text">Fühl den Beat.<br>Meister das Quiz.</h1>
+      <p>Höre Song-Schnipsel und beweise dein Wissen. Das ultimative Musik-Quiz für dein Smartphone.</p>
       
+      <div class="store-buttons">
+        <a href="https://play.google.com/store/apps/details?id=com.pointe.beatmaster" class="btn-store" target="_blank">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.61 3,21.09 3,20.5M16.81,15.12L18.67,16.2C20.13,17.03 20.13,18.97 18.67,19.8L15.19,21.81L14.74,13.05L16.81,15.12M20.13,5.2C21.59,6.03 21.59,7.97 20.13,8.8L18.67,9.88L16.59,11.96L14.74,10.95L15.19,2.19L18.67,4.2L20.13,5.2M4.75,2.1L12.7,10.05L14.15,11.5L4.75,20.9C4.42,20.73 4.16,20.45 4.05,20.1L13.45,10.7L4.05,1.3C4.16,0.95 4.42,0.67 4.75,0.5"/></svg>
+          <div>
+            <div style="font-size: 0.7rem; font-weight: 400;">JETZT BEI</div>
+            <div style="font-size: 1.1rem;">Google Play</div>
+          </div>
+        </a>
+        <div class="btn-store disabled">
+          <span class="coming-soon-badge">BALD</span>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.94,2C16.07,3.17 15.6,4.35 14.9,5.19C14.21,6.04 13.07,6.7 11.95,6.61C11.8,5.46 12.36,4.26 13,3.5Z"/></svg>
+          <div>
+            <div style="font-size: 0.7rem; font-weight: 400;">Laden im</div>
+            <div style="font-size: 1.1rem;">App Store</div>
+          </div>
+        </div>
+      </div>
+
       <div class="phone-frame">
         <div class="phone-notch"></div>
         
         <!-- Start Screen -->
         <div id="start-screen" class="game-card">
-          <div style="margin-top: 6rem;">
-            <h2 class="game-title" style="color: white; font-size: 1.8rem; margin-bottom: 1.5rem;">Beatmaster Lite</h2>
-            <p style="font-size: 0.9rem; margin-bottom: 3rem; color: var(--text-secondary);">Erkenne die Songs in 3 spannenden Demorunden!</p>
+          <div class="lite-start-content">
+            <div class="lite-record-icon">
+              <div class="dot"></div>
+            </div>
+            <h2 style="font-size: 1.8rem; font-weight: 900; letter-spacing: -1px;">BEATMASTER<br><span class="gradient-text">LITE</span></h2>
+            <p style="font-size: 0.9rem; color: var(--text-secondary); max-width: 200px;">Teste dein Ohr in 3 schnellen Runden!</p>
+            <button id="start-btn" class="btn-primary" style="width: 100%; margin-top: 2rem;">JETZT STARTEN</button>
           </div>
-          <button id="start-btn" class="btn-primary" style="width: 100%;">JETZT SPIELEN</button>
         </div>
 
         <!-- Game Screen -->
@@ -53,7 +74,6 @@
             </div>
           </div>
 
-          <!-- Shuffle Cards -->
           <div id="shuffle-container" class="shuffle-container">
             <div class="shuffle-card" id="card-1">TITEL?</div>
             <div class="shuffle-card" id="card-2">INTERPRET?</div>
@@ -62,13 +82,11 @@
 
           <div id="question-reveal" class="question-reveal">TITEL?</div>
 
-          <!-- Vinyl Player -->
           <div id="vinyl-player" class="vinyl-container" style="display: none;">
             <svg class="vinyl-progress" viewBox="0 0 260 260">
               <circle class="bg" cx="130" cy="130" r="120"></circle>
               <circle id="progress-fg" class="fg" cx="130" cy="130" r="120"></circle>
             </svg>
-            
             <div id="vinyl-wrapper" class="vinyl-wrapper">
               <img src="assets/images/platte.png" alt="Vinyl" class="vinyl-record">
               <div class="vinyl-art-overlay">
@@ -78,12 +96,10 @@
             <img id="vinyl-arm" src="assets/images/arm.png" alt="Arm" class="vinyl-arm">
           </div>
 
-          <!-- Countdown Overlay -->
           <div id="countdown-overlay" class="countdown-overlay">
             <div id="countdown-number" class="countdown-number">3</div>
           </div>
 
-          <!-- Result Reveal -->
           <div id="result-screen" class="result-reveal">
             <img id="result-cover" src="" alt="Album Cover" class="result-cover">
             <div class="result-info">
@@ -92,18 +108,16 @@
             </div>
             <button id="next-btn" class="btn-primary" style="width: 100%;">WEITER</button>
           </div>
-
-          <p id="audio-status"></p>
-          <audio id="song-preview"></audio>
+          <audio id="song-preview" preload="auto"></audio>
         </div>
 
         <!-- Final Screen -->
         <div id="final-screen" class="game-card" style="display: none;">
-          <div style="margin-top: 6rem; text-align: center;">
-            <h2 class="game-title" style="color: white; font-size: 1.8rem; margin-bottom: 1.5rem;">Geschafft!</h2>
-            <p style="font-size: 0.9rem; margin-bottom: 3rem; color: var(--text-secondary);">Du hast ein Ohr für Hits! Hol dir jetzt die App für mehr.</p>
-            <a href="https://play.google.com/store/apps/details?id=com.pointe.beatmaster" class="btn-primary" style="text-decoration: none; display: block;">APP LADEN</a>
-            <button id="restart-btn" style="background: none; border: none; color: var(--text-secondary); margin-top: 2rem; cursor: pointer; text-decoration: underline;">Nochmal versuchen</button>
+          <div class="lite-start-content">
+            <h2 style="font-size: 1.8rem; font-weight: 900;">SUPER GEMACHT!</h2>
+            <p style="font-size: 0.9rem; color: var(--text-secondary);">Du hast ein echtes Talent für Musik-Quiz!</p>
+            <a href="https://play.google.com/store/apps/details?id=com.pointe.beatmaster" class="btn-primary" style="text-decoration: none; display: block; width: 100%;">APP KOSTENLOS LADEN</a>
+            <button id="restart-btn" style="background: none; border: none; color: var(--text-secondary); margin-top: 1rem; cursor: pointer; text-decoration: underline;">Nochmal spielen</button>
           </div>
         </div>
       </div>
@@ -119,12 +133,26 @@
           <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&q=80&w=600" alt="Music App">
         </div>
       </div>
+      
+      <div class="feature-item">
+        <div class="feature-content">
+          <h2 class="gradient-text">Riesige Bibliothek</h2>
+          <p>Von den 60ern bis zu den heutigen Charts. Unsere kuratierten Playlists decken jedes Genre ab.</p>
+        </div>
+        <div class="feature-image">
+          <img src="https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?auto=format&fit=crop&q=80&w=600" alt="Playlists">
+        </div>
+      </div>
     </section>
   </main>
 
   <footer style="background: var(--surface-dark); padding: 4rem 0; margin-top: 4rem;">
     <div class="container" style="text-align: center;">
       <div class="logo" style="margin-bottom: 2rem;">BEAT<span class="gradient-text">MASTER</span></div>
+      <div style="display: flex; justify-content: center; gap: 2rem; margin-bottom: 2rem;">
+        <a href="privacy.html" style="color: var(--text-secondary); text-decoration: none;">Datenschutz</a>
+        <a href="#" style="color: var(--text-secondary); text-decoration: none;">Impressum</a>
+      </div>
       <p style="color: var(--text-secondary); font-size: 0.8rem;">&copy; 2026 Beatmaster. Alle Rechte vorbehalten.</p>
     </div>
   </footer>
@@ -182,7 +210,13 @@
     const resultCover = document.getElementById('result-cover');
     const correctAnswerText = document.getElementById('correct-answer-text');
 
-    startBtn.addEventListener('click', startGame);
+    startBtn.addEventListener('click', () => {
+      // UNLOCK AUDIO for browser
+      audio.load();
+      audio.play().then(() => audio.pause()).catch(() => {});
+      startGame();
+    });
+
     restartBtn.addEventListener('click', startGame);
     nextBtn.addEventListener('click', () => {
       currentRoundIndex++;
@@ -215,7 +249,6 @@
       countdownOverlay.style.display = 'none';
       phaseBadge.textContent = "MISCHEN...";
       
-      // Phase 1: Shuffle
       shuffleContainer.style.display = 'flex';
       const cards = document.querySelectorAll('.shuffle-card');
       cards.forEach((c, idx) => {
@@ -238,7 +271,7 @@
             playMusic(song);
           });
         }, 1500);
-      }, 2400); // App-authentic shuffle duration
+      }, 2400);
     }
 
     function startCountdown(callback) {
@@ -265,14 +298,17 @@
       audio.src = song.preview;
       progressFg.style.strokeDashoffset = 754;
       
+      // Load and Play
+      audio.load();
       audio.play().then(() => {
         vinylWrapper.classList.add('spinning');
         vinylArm.classList.add('active');
-        startProgress(30000); // Full 30s
-        
+        startProgress(30000);
         musicTimer = setTimeout(showResolution, 30000);
-      }).catch(() => {
-        showResolution();
+      }).catch(err => {
+        console.error("Audio play error:", err);
+        // Fallback: show resolution if audio fails
+        setTimeout(showResolution, 2000);
       });
     }
 
@@ -297,7 +333,6 @@
       const song = songs[currentRoundIndex];
       resultCover.src = song.cover;
       correctAnswerText.innerHTML = `<strong>${song.title}</strong><br>${song.artist} (${song.year})`;
-      
       resultScreen.style.display = 'flex';
     }
   </script>
