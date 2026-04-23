@@ -47,10 +47,10 @@
 
         <!-- Game Screen -->
         <div id="game-screen" class="game-card" style="display: none;">
-          <div class="game-top-bar" style="display: flex; justify-content: space-between; width: 100%; align-items: center; padding: 1rem 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.1);">
-            <div onclick="location.reload()" style="background: rgba(255,255,255,0.05); padding: 0.4rem 0.8rem; border-radius: 50px; font-size: 0.6rem; font-weight: 800; color: white; cursor: pointer;">HOME</div>
-            <div id="phase-badge-top" style="font-size: 0.7rem; font-weight: 800; color: var(--accent-primary); letter-spacing: 1px; text-transform: uppercase;">FRAGE</div>
-            <div style="background: rgba(255,255,255,0.05); padding: 0.4rem 0.8rem; border-radius: 50px; font-size: 0.6rem; font-weight: 800; color: white;"><span id="current-round">1</span> / 3</div>
+          <div class="game-top-bar" style="display: flex; justify-content: space-between; width: 100%; align-items: center; padding: 1.2rem 1rem; border-bottom: 1px solid rgba(255,255,255,0.05); gap: 0.5rem;">
+            <div onclick="location.reload()" style="background: rgba(255,255,255,0.05); padding: 0.5rem 0.8rem; border-radius: 50px; font-size: 0.65rem; font-weight: 800; color: white; cursor: pointer; white-space: nowrap;">HOME</div>
+            <div id="phase-badge-top" style="font-size: 0.7rem; font-weight: 800; color: var(--accent-primary); letter-spacing: 1px; text-transform: uppercase; text-align: center; line-height: 1.2; flex: 1;">FRAGE</div>
+            <div style="background: rgba(255,255,255,0.05); padding: 0.5rem 0.8rem; border-radius: 50px; font-size: 0.65rem; font-weight: 800; color: white; white-space: nowrap;"><span id="current-round">1</span> / 3</div>
           </div>
 
           <div id="shuffle-container" class="shuffle-container">
@@ -65,16 +65,19 @@
 
           <div id="question-reveal" class="question-reveal">TITEL?</div>
 
-          <div id="vinyl-player" class="vinyl-container" style="display: none;">
-            <svg class="vinyl-progress" viewBox="0 0 260 260">
-              <circle class="bg" cx="130" cy="130" r="120"></circle>
-              <circle id="progress-fg" class="fg" cx="130" cy="130" r="120"></circle>
-            </svg>
-            <div id="vinyl-wrapper" class="vinyl-wrapper">
-              <img src="assets/images/platte.png" alt="Vinyl" class="vinyl-record">
-              <div class="vinyl-art-overlay"></div>
+          <div id="vinyl-player" class="vinyl-container" style="display: none; flex-direction: column;">
+            <div id="gameplay-question" style="background: rgba(255,255,255,0.05); padding: 0.6rem 1.5rem; border: 1px solid var(--accent-primary); border-radius: 50px; color: var(--accent-primary); font-weight: 900; font-size: 0.85rem; margin-bottom: 2rem; text-transform: uppercase; letter-spacing: 1px;">TITEL?</div>
+            <div style="position: relative; width: 260px; height: 260px;">
+              <svg class="vinyl-progress" viewBox="0 0 260 260">
+                <circle class="bg" cx="130" cy="130" r="120"></circle>
+                <circle id="progress-fg" class="fg" cx="130" cy="130" r="120"></circle>
+              </svg>
+              <div id="vinyl-wrapper" class="vinyl-wrapper" style="margin: 30px auto;">
+                <img src="assets/images/platte.png" alt="Vinyl" class="vinyl-record">
+                <div class="vinyl-art-overlay"></div>
+              </div>
+              <img id="vinyl-arm" src="assets/images/arm.png" alt="Arm" class="vinyl-arm">
             </div>
-            <img id="vinyl-arm" src="assets/images/arm.png" alt="Arm" class="vinyl-arm">
           </div>
 
           <div id="countdown-overlay" class="countdown-overlay">
@@ -204,6 +207,7 @@
     const progressFg = document.getElementById('progress-fg');
     const currentRoundEl = document.getElementById('current-round');
     const phaseBadgeTop = document.getElementById('phase-badge-top');
+    const gameplayQuestion = document.getElementById('gameplay-question');
     
     const shuffleContainer = document.getElementById('shuffle-container');
     const questionReveal = document.getElementById('question-reveal');
@@ -300,6 +304,7 @@
 
     function playMusic(song) {
       phaseBadgeTop.textContent = "HÖR GENAU HIN";
+      gameplayQuestion.textContent = currentQType;
       vinylPlayer.style.display = 'flex';
       
       audio.src = song.preview;

@@ -291,22 +291,15 @@ h1, h2, h3 {
   height: 76px;
   border-radius: 50%;
   overflow: hidden;
-  background: #111;
-  border: 4px solid #333;
+  background: #000;
+  border: 4px solid #1a1a1a;
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 3;
 }
 
-.vinyl-art-overlay::after {
-  content: 'B';
-  font-family: 'Inter', sans-serif;
-  font-weight: 900;
-  font-size: 2.2rem;
-  color: var(--accent-primary);
-  text-shadow: 0 0 15px var(--accent-primary);
-}
+/* Removed vinyl-art-overlay::after B logo */
 
 .vinyl-art-overlay img {
   width: 100%;
