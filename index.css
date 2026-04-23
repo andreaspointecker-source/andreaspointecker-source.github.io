@@ -473,11 +473,13 @@ h1, h2, h3 {
   position: absolute;
   width: 120px;
   height: 160px;
-  background: var(--surface);
+  background: var(--surface) url('assets/images/platte.png') no-repeat center center;
+  background-size: 70%;
   border: 2px solid var(--accent-primary);
   border-radius: 15px;
   left: 20px;
   top: 20px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
 }
 
 .shuffle-card.animating {
