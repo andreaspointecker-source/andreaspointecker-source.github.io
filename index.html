@@ -1,235 +1,249 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Beatmaster - Das ultimative Musik-Quiz</title>
-  <meta name="description" content="Rate Titel, Interpret und Erscheinungsjahr deiner Lieblingssongs. Jetzt online spielen und die App im Store laden!">
-  <link rel="stylesheet" href="index.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beatmaster - Das ultimative Musik-Quiz</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
-
   <div class="bg-overlay"></div>
-
-  <div class="container">
-    <!-- Hero Section -->
-    <header class="hero">
-      <h1>BEAT<span class="gradient-text">MASTER</span></h1>
-      <p>Bist du ein echter Musik-Experte? Teste dein Wissen in unserem Mini-Game und lade dir die volle Experience direkt auf dein Smartphone!</p>
-      
-      <div class="store-buttons">
-        <div class="btn-store disabled">
-          <svg viewBox="0 0 384 512" width="24" fill="currentColor"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
-          <span>App Store</span>
-          <span class="coming-soon-badge">Bald da!</span>
-        </div>
-        <a href="https://play.google.com/store/apps/details?id=com.pointe.beatmaster" class="btn-store">
-          <svg viewBox="0 0 512 512" width="24" fill="currentColor"><path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm189.2 274.1L411 438.9c24.9-14.3 42-41.2 42-72.6V145.7c0-31.4-17.1-58.3-42-72.6L236.2 234.1l25.1 25.1-25.1 14.9zM325.3 277.7l60.1 60.1L104.6 499l220.7-221.3z"/></svg>
-          <span>Google Play</span>
+  
+  <nav class="container">
+    <div style="padding: 2rem 0; display: flex; justify-content: space-between; align-items: center;">
+      <div class="logo" style="font-weight: 900; font-size: 1.5rem; letter-spacing: -1px;">
+        BEAT<span class="gradient-text">MASTER</span>
+      </div>
+      <div class="store-buttons" style="margin: 0;">
+        <a href="https://play.google.com/store/apps/details?id=com.pointe.beatmaster" class="btn-store" target="_blank" style="padding: 0.5rem 1rem; font-size: 0.8rem;">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.61 3,21.09 3,20.5M16.81,15.12L18.67,16.2C20.13,17.03 20.13,18.97 18.67,19.8L15.19,21.81L14.74,13.05L16.81,15.12M20.13,5.2C21.59,6.03 21.59,7.97 20.13,8.8L18.67,9.88L16.59,11.96L14.74,10.95L15.19,2.19L18.67,4.2L20.13,5.2M4.75,2.1L12.7,10.05L14.15,11.5L4.75,20.9C4.42,20.73 4.16,20.45 4.05,20.1L13.45,10.7L4.05,1.3C4.16,0.95 4.42,0.67 4.75,0.5"/></svg>
+          Google Play
         </a>
       </div>
-    </header>
+    </div>
+  </nav>
 
-    <!-- Mini-Game Section -->
-    <section class="game-container">
-      <div id="start-screen" class="game-card">
-        <div class="game-header">
-          <h2 class="game-title">Bereit für <span class="gradient-text">3 Runden</span>?</h2>
-          <p>Hör dir den Song-Schnipsel an und erkenne Titel, Interpret und das Jahr.</p>
-        </div>
-        <button id="start-btn" class="btn-primary" style="width: 100%;">Spiel starten</button>
-      </div>
-
-      <div id="game-screen" class="game-card" style="display: none;">
-        <div id="phase-badge" class="phase-badge">DEINE FRAGE</div>
-        <div class="game-header">
-          <div class="game-title">Runde <span id="current-round">1</span>/3</div>
-          <div class="game-progress">
-            <div id="progress-bar" class="progress-bar"></div>
+  <main class="container">
+    <section class="hero">
+      <h1 class="gradient-text">Fühl den Beat.<br>Meister das Quiz.</h1>
+      <p>Teste dein Musikwissen in Echtzeit! Höre Song-Schnipsel aus allen Jahrzehnten und beweise, dass du der wahre Beatmaster bist.</p>
+      
+      <div class="phone-frame">
+        <div class="phone-notch"></div>
+        
+        <!-- Start Screen -->
+        <div id="start-screen" class="game-card">
+          <div style="margin-top: 4rem;">
+            <h2 class="game-title" style="color: white; font-size: 1.5rem; margin-bottom: 1rem;">Beatmaster Lite</h2>
+            <p style="font-size: 0.9rem; margin-bottom: 2rem;">Spiele 3 Runden mit unseren Starter-Songs und teste deine Skills!</p>
           </div>
+          <button id="start-btn" class="btn-primary" style="width: 100%;">Spiel starten</button>
         </div>
 
-        <div class="vinyl-container">
-          <svg class="vinyl-progress" viewBox="0 0 320 320">
-            <circle class="bg" cx="160" cy="160" r="140"></circle>
-            <circle id="progress-fg" class="fg" cx="160" cy="160" r="140"></circle>
-          </svg>
+        <!-- Game Screen -->
+        <div id="game-screen" class="game-card" style="display: none;">
+          <div id="phase-badge" class="phase-badge">BEREIT?</div>
           
-          <div id="vinyl-wrapper" class="vinyl-wrapper">
-            <img src="assets/images/platte.png" alt="Vinyl" class="vinyl-record">
-            <div class="vinyl-art-overlay">
-              <img id="vinyl-art" src="" alt="Song Art">
+          <div class="game-header">
+            <div class="game-title">Runde <span id="current-round">1</span>/3</div>
+            <div class="game-progress">
+              <div id="progress-bar" class="progress-bar"></div>
             </div>
           </div>
-          
-          <img id="vinyl-arm" src="assets/images/arm.png" alt="Arm" class="vinyl-arm">
-        </div>
 
-        <div id="play-controls" style="text-align: center; margin-bottom: 2rem;">
-          <p id="audio-status">Lade Audio...</p>
+          <!-- Shuffle Cards -->
+          <div id="shuffle-container" class="shuffle-container">
+            <div class="shuffle-card" id="card-1">TITEL?</div>
+            <div class="shuffle-card" id="card-2">INTERPRET?</div>
+            <div class="shuffle-card" id="card-3">JAHR?</div>
+          </div>
+
+          <div id="question-reveal" class="question-reveal">TITEL?</div>
+
+          <!-- Vinyl Player -->
+          <div id="vinyl-player" class="vinyl-container" style="display: none;">
+            <svg class="vinyl-progress" viewBox="0 0 260 260">
+              <circle class="bg" cx="130" cy="130" r="120"></circle>
+              <circle id="progress-fg" class="fg" cx="130" cy="130" r="120"></circle>
+            </svg>
+            
+            <div id="vinyl-wrapper" class="vinyl-wrapper">
+              <img src="assets/images/platte.png" alt="Vinyl" class="vinyl-record">
+              <div class="vinyl-art-overlay">
+                <img id="vinyl-art" src="" alt="Song Art">
+              </div>
+            </div>
+            <img id="vinyl-arm" src="assets/images/arm.png" alt="Arm" class="vinyl-arm">
+          </div>
+
+          <!-- Countdown Overlay -->
+          <div id="countdown-overlay" class="countdown-overlay">
+            <div id="countdown-number" class="countdown-number">3</div>
+          </div>
+
+          <!-- Result Reveal -->
+          <div id="result-screen" class="result-reveal">
+            <img id="result-cover" src="" alt="Album Cover" class="result-cover">
+            <div class="result-info">
+              <h3 id="result-status" style="color: var(--accent-primary);">AUFLÖSUNG</h3>
+              <p id="correct-answer-text"></p>
+            </div>
+          </div>
+
+          <p id="audio-status"></p>
           <audio id="song-preview"></audio>
         </div>
 
-        <div id="countdown-overlay" class="countdown-overlay" style="display: none;">
-          <div id="countdown-number" class="countdown-number">3</div>
-        </div>
-
-        <div id="input-section" class="game-form">
-          <div class="input-group">
-            <label for="guess-title">Titel</label>
-            <input type="text" id="guess-title" placeholder="Wie heißt der Song?">
+        <!-- Final Screen -->
+        <div id="final-screen" class="game-card" style="display: none;">
+          <div style="margin-top: 4rem; text-align: center;">
+            <h2 class="game-title" style="color: white; font-size: 1.5rem; margin-bottom: 1rem;">Top Performance!</h2>
+            <p style="font-size: 0.8rem; margin-bottom: 2rem;">Du hast alle Starter-Songs gehört. Hol dir jetzt die volle Erfahrung mit tausenden Songs!</p>
+            <a href="https://play.google.com/store/apps/details?id=com.pointe.beatmaster" class="btn-primary" style="text-decoration: none; display: block;">Jetzt Gratis Laden</a>
+            <button id="restart-btn" style="background: none; border: none; color: var(--text-secondary); margin-top: 2rem; cursor: pointer;">Nochmal spielen</button>
           </div>
-          <div class="input-group">
-            <label for="guess-artist">Interpret</label>
-            <input type="text" id="guess-artist" placeholder="Wer singt das?">
-          </div>
-          <div class="input-group">
-            <label for="guess-year">Jahr</label>
-            <input type="number" id="guess-year" placeholder="Erscheinungsjahr">
-          </div>
-          <button id="check-btn" class="btn-primary">Antwort prüfen</button>
         </div>
-
-        <div id="result-screen" class="result-reveal">
-          <img id="result-cover" src="" alt="Album Cover" class="result-cover">
-          <div class="result-info">
-            <h3 id="result-status">Gut gemacht!</h3>
-            <p id="correct-answer-text"></p>
-          </div>
-          <button id="next-btn" class="btn-primary">Nächste Runde</button>
-        </div>
-      </div>
-
-      <div id="final-screen" class="game-card" style="display: none; text-align: center;">
-        <h2 class="game-title">Spiel beendet!</h2>
-        <p style="margin-bottom: 2rem;">Du hast die Starter-Songs gerockt. Hol dir jetzt die App für tausende weitere Songs und Multiplayer-Action!</p>
-        <div class="store-buttons" style="justify-content: center;">
-            <div class="btn-store disabled" style="margin: 0;">
-                App Store
-                <span class="coming-soon-badge">Bald da!</span>
-            </div>
-            <a href="https://play.google.com/store/apps/details?id=com.pointe.beatmaster" class="btn-store">Google Play</a>
-        </div>
-        <button id="restart-btn" class="btn-primary" style="margin-top: 2rem; background: var(--surface);">Nochmal spielen</button>
       </div>
     </section>
 
-    <!-- Features Section -->
     <section class="features">
       <div class="feature-item">
         <div class="feature-content">
-          <h2>Tausende Songs</h2>
-          <p>Rate Songs aus über 16 Playlisten und Jahrzehnten. Von den 70ern bis heute, von Rock bis Schlager.</p>
+          <h2 class="gradient-text">Echtzeit-Multiplayer</h2>
+          <p>Tritt gegen Freunde oder Spieler weltweit an. Wer erkennt den Song zuerst? Jede Sekunde zählt!</p>
         </div>
         <div class="feature-image">
-          <img src="assets/playlists.png" alt="Playlists">
+          <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&q=80&w=600" alt="Music App">
         </div>
       </div>
-
+      
       <div class="feature-item">
         <div class="feature-content">
-          <h2>Live Multiplayer</h2>
-          <p>Tritt gegen deine Freunde an! Erstelle eine Lobby, lass sie den QR-Code scannen und findet heraus, wer der wahre Beatmaster ist.</p>
+          <h2 class="gradient-text">Riesige Bibliothek</h2>
+          <p>Von den 60ern bis zu den heutigen Charts. Unsere kuratierten Playlists decken jedes Genre ab.</p>
         </div>
         <div class="feature-image">
-          <img src="assets/lobby.png" alt="Lobby">
-        </div>
-      </div>
-
-      <div class="feature-item">
-        <div class="feature-content">
-          <h2>Direkte Integration</h2>
-          <p>Du liebst einen Song, den du gerade geraten hast? Mit nur einem Klick kannst du ihn direkt auf Apple Music anhören.</p>
-        </div>
-        <div class="feature-image">
-          <img src="assets/screen1.png" alt="Integration">
+          <img src="https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?auto=format&fit=crop&q=80&w=600" alt="Playlists">
         </div>
       </div>
     </section>
+  </main>
 
-    <footer style="text-align: center; padding: 4rem 0; color: var(--text-secondary); font-size: 0.9rem;">
-      <p>&copy; 2026 Beatmaster Team. Powered by Apple Music.</p>
-      <div style="margin-top: 1rem;">
-        <a href="privacy.html" style="color: var(--text-secondary); margin: 0 10px;">Datenschutz</a>
-        <a href="#" style="color: var(--text-secondary); margin: 0 10px;">Impressum</a>
+  <footer style="background: var(--surface-dark); padding: 4rem 0; margin-top: 4rem;">
+    <div class="container" style="text-align: center;">
+      <div class="logo" style="margin-bottom: 2rem;">BEAT<span class="gradient-text">MASTER</span></div>
+      <div style="display: flex; justify-content: center; gap: 2rem; margin-bottom: 2rem;">
+        <a href="privacy.html" style="color: var(--text-secondary); text-decoration: none;">Datenschutz</a>
+        <a href="#" style="color: var(--text-secondary); text-decoration: none;">Impressum</a>
+        <a href="#" style="color: var(--text-secondary); text-decoration: none;">Kontakt</a>
       </div>
-    </footer>
-  </div>
+      <p style="color: var(--text-secondary); font-size: 0.8rem;">&copy; 2026 Beatmaster. Alle Rechte vorbehalten.</p>
+    </div>
+  </footer>
 
   <script>
     const songs = [
       {
-        artist: "Queen",
-        title: "Bohemian Rhapsody",
-        year: 1975,
-        preview: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/77/a4/a4/77a4a40b-3144-34ed-186e-ac548aac35bd/mzaf_11980497198998132256.plus.aac.p.m4a",
-        cover: "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/8b/f1/50/8bf1503a-a4db-4fa6-a3a5-f919509acacd/14UMGIM43392.rgb.jpg/512x512bb.jpg"
+        title: "Billie Jean",
+        artist: "Michael Jackson",
+        year: 1982,
+        cover: "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/8b/f1/50/8bf1503a-a4db-4fa6-a3a5-f919509acacd/14UMGIM43392.rgb.jpg/512x512bb.jpg",
+        preview: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioVideo122/v4/85/3d/8c/853d8c1e-3652-3d84-1f95-46f906571587/mzaf_1508216765103006450.plus.aac.p.m4a"
       },
       {
-        artist: "The Weeknd",
         title: "Blinding Lights",
+        artist: "The Weeknd",
         year: 2019,
-        preview: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/17/b4/8f/17b48f9a-0b93-6bb8-fe1d-3a16623c2cfb/mzaf_9560252727299052414.plus.aac.p.m4a",
-        cover: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/a6/6e/bf/a66ebf79-5008-8948-b352-a790fc87446b/19UM1IM04638.rgb.jpg/512x512bb.jpg"
+        cover: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/64/00/0a/64000a6e-4171-d40b-7f12-076159675276/20UMGIM13926.rgb.jpg/512x512bb.jpg",
+        preview: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioVideo115/v4/85/1e/8c/851e8cc3-c157-593b-e016-16986241b778/mzaf_10523450917013898083.plus.aac.p.m4a"
       },
       {
-        artist: "a-ha",
-        title: "Take on Me",
-        year: 1985,
-        preview: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/f2/03/4f/f2034f41-707f-7111-bc63-e5d3cf7f2240/mzaf_17215043934336702540.plus.aac.p.m4a",
-        cover: "https://is1-ssl.mzstatic.com/image/thumb/Music/c6/e1/c8/mzi.ixgzfcmc.jpg/512x512bb.jpg"
+        title: "Smells Like Teen Spirit",
+        artist: "Nirvana",
+        year: 1991,
+        cover: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/3d/9d/38/3d9d3811-71f0-3a0e-993d-9f539a5d7d3f/11UMGIM50529.rgb.jpg/512x512bb.jpg",
+        preview: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioVideo115/v4/6c/0e/41/6c0e4171-7009-178b-3b32-359f1f0a202d/mzaf_15077473767215286419.plus.aac.p.m4a"
       }
     ];
 
     let currentRoundIndex = 0;
-    let score = 0;
-
     const startBtn = document.getElementById('start-btn');
-    const checkBtn = document.getElementById('check-btn');
-    const nextBtn = document.getElementById('next-btn');
     const restartBtn = document.getElementById('restart-btn');
-    
     const startScreen = document.getElementById('start-screen');
     const gameScreen = document.getElementById('game-screen');
     const finalScreen = document.getElementById('final-screen');
-    const resultScreen = document.getElementById('result-screen');
-    const inputSection = document.getElementById('input-section');
+    
     const audio = document.getElementById('song-preview');
     const audioStatus = document.getElementById('audio-status');
+    const vinylPlayer = document.getElementById('vinyl-player');
     const vinylArt = document.getElementById('vinyl-art');
-    const progressBar = document.getElementById('progress-bar');
-    const currentRoundEl = document.getElementById('current-round');
-    
-    const guessTitle = document.getElementById('guess-title');
-    const guessArtist = document.getElementById('guess-artist');
-    const guessYear = document.getElementById('guess-year');
-    
     const vinylWrapper = document.getElementById('vinyl-wrapper');
     const vinylArm = document.getElementById('vinyl-arm');
     const progressFg = document.getElementById('progress-fg');
+    const progressBar = document.getElementById('progress-bar');
+    const currentRoundEl = document.getElementById('current-round');
     const phaseBadge = document.getElementById('phase-badge');
+    
+    const shuffleContainer = document.getElementById('shuffle-container');
+    const questionReveal = document.getElementById('question-reveal');
     const countdownOverlay = document.getElementById('countdown-overlay');
     const countdownNumber = document.getElementById('countdown-number');
-    
+    const resultScreen = document.getElementById('result-screen');
     const resultCover = document.getElementById('result-cover');
-    const resultStatus = document.getElementById('result-status');
     const correctAnswerText = document.getElementById('correct-answer-text');
 
     startBtn.addEventListener('click', startGame);
-    checkBtn.addEventListener('click', checkAnswer);
-    nextBtn.addEventListener('click', nextRound);
     restartBtn.addEventListener('click', startGame);
 
     function startGame() {
       currentRoundIndex = 0;
-      score = 0;
       startScreen.style.display = 'none';
       finalScreen.style.display = 'none';
-      gameScreen.style.display = 'block';
+      gameScreen.style.display = 'flex';
       loadRound();
+    }
+
+    const questionTypes = ["TITEL?", "INTERPRET?", "JAHR?"];
+
+    function loadRound() {
+      const song = songs[currentRoundIndex];
+      currentRoundEl.textContent = currentRoundIndex + 1;
+      progressBar.style.width = ((currentRoundIndex) / songs.length * 100) + '%';
+      
+      // Reset UI
+      resultScreen.style.display = 'none';
+      vinylPlayer.style.display = 'none';
+      questionReveal.style.display = 'none';
+      countdownOverlay.style.display = 'none';
+      phaseBadge.textContent = "MISCHEN...";
+      
+      // Phase 1: Shuffle
+      shuffleContainer.style.display = 'flex';
+      const cards = document.querySelectorAll('.shuffle-card');
+      cards.forEach(c => c.classList.add('animating'));
+      
+      setTimeout(() => {
+        // Phase 2: Reveal Question
+        cards.forEach(c => c.classList.remove('animating'));
+        shuffleContainer.style.display = 'none';
+        
+        const qType = questionTypes[Math.floor(Math.random() * questionTypes.length)];
+        questionReveal.textContent = qType;
+        questionReveal.style.display = 'block';
+        phaseBadge.textContent = "DEINE FRAGE";
+        
+        setTimeout(() => {
+          // Phase 3: Countdown
+          questionReveal.style.display = 'none';
+          startCountdown(() => {
+            // Phase 4: Music
+            playMusic(song);
+          });
+        }, 1500);
+      }, 2000);
     }
 
     function startCountdown(callback) {
@@ -246,132 +260,70 @@
           countdownOverlay.style.display = 'none';
           callback();
         }
+      }, 8000 / 8); // Fast 3s countdown
+      
+      // Actually 3 real seconds
+      let realCount = 3;
+      const realInterval = setInterval(() => {
+        realCount--;
+        countdownNumber.textContent = realCount;
+        if (realCount === 0) {
+           clearInterval(realInterval);
+        }
       }, 1000);
     }
 
-    function loadRound() {
-      const song = songs[currentRoundIndex];
-      currentRoundEl.textContent = currentRoundIndex + 1;
-      progressBar.style.width = ((currentRoundIndex) / songs.length * 100) + '%';
+    function playMusic(song) {
+      phaseBadge.textContent = "HÖR GENAU HIN";
+      vinylPlayer.style.display = 'flex';
+      vinylArt.src = song.cover;
+      audio.src = song.preview;
       
-      // Reset inputs
-      guessTitle.value = '';
-      guessArtist.value = '';
-      guessYear.value = '';
-      
-      inputSection.style.display = 'none';
-      resultScreen.style.display = 'none';
-      vinylWrapper.classList.remove('spinning');
-      vinylArm.classList.remove('active');
-      progressFg.style.strokeDashoffset = 590;
-      
-      phaseBadge.textContent = "BEREIT?";
-      audioStatus.textContent = "Mach dich bereit...";
-
-      startCountdown(() => {
-        phaseBadge.textContent = "RATE DEN SONG";
-        // Setup Audio
-        audio.src = song.preview;
-        audioStatus.textContent = "Hör genau hin...";
-        vinylArt.src = song.cover;
-        
-        inputSection.style.display = 'flex';
-        
-        audio.play().then(() => {
-          vinylWrapper.classList.add('spinning');
-          vinylArm.classList.add('active');
-          startProgress(30000); // 30s for preview
-        }).catch(e => {
-          audioStatus.textContent = "Klicke zum Abspielen";
-          document.body.addEventListener('click', () => {
-             audio.play();
-             vinylWrapper.classList.add('spinning');
-             vinylArm.classList.add('active');
-             startProgress(30000);
-          }, {once: true});
-        });
+      audio.play().then(() => {
+        vinylWrapper.classList.add('spinning');
+        vinylArm.classList.add('active');
+        startProgress(5000); // Only play 5s for the demo
+      }).catch(() => {
+        audioStatus.textContent = "Audio konnte nicht geladen werden";
+        setTimeout(showResolution, 2000);
       });
+
+      // Auto resolution after 5s
+      setTimeout(showResolution, 5000);
     }
 
-    let progressInterval;
     function startProgress(duration) {
       const start = Date.now();
-      if (progressInterval) clearInterval(progressInterval);
-      
-      progressInterval = setInterval(() => {
+      const interval = setInterval(() => {
         const elapsed = Date.now() - start;
         const progress = Math.min(elapsed / duration, 1);
-        const offset = 590 - (progress * 590);
+        const offset = 754 - (progress * 754);
         progressFg.style.strokeDashoffset = offset;
-        
-        if (progress >= 1) {
-          clearInterval(progressInterval);
-          checkAnswer(); // Auto-check if time runs out? Or just stop.
-        }
+        if (progress >= 1) clearInterval(interval);
       }, 50);
     }
 
-    function checkAnswer() {
-      if (progressInterval) clearInterval(progressInterval);
-      const song = songs[currentRoundIndex];
-      const gTitle = guessTitle.value.trim().toLowerCase();
-      const gArtist = guessArtist.value.trim().toLowerCase();
-      const gYear = guessYear.value.trim();
-      
-      const correctTitle = song.title.toLowerCase();
-      const correctArtist = song.artist.toLowerCase();
-      
-      let correctCount = 0;
-      if (correctTitle.includes(gTitle) && gTitle.length > 2) correctCount++;
-      if (correctArtist.includes(gArtist) && gArtist.length > 2) correctCount++;
-      if (gYear == song.year) correctCount++;
-      
+    function showResolution() {
       audio.pause();
       vinylWrapper.classList.remove('spinning');
       vinylArm.classList.remove('active');
-      
-      inputSection.style.display = 'none';
-      resultScreen.style.display = 'block';
-      nextBtn.style.display = 'none'; 
-      
       phaseBadge.textContent = "AUFLÖSUNG";
-      resultCover.src = song.cover;
-      correctAnswerText.innerHTML = `<strong>${song.title}</strong> von <strong>${song.artist}</strong> (${song.year})`;
       
-      if (correctCount === 3) {
-        resultStatus.textContent = "Perfekt! Alles richtig!";
-        resultStatus.style.color = "#4BB543";
-      } else if (correctCount > 0) {
-        resultStatus.textContent = "Nicht schlecht!";
-        resultStatus.style.color = "var(--accent-primary)";
-      } else {
-        resultStatus.textContent = "Das war wohl nichts...";
-        resultStatus.style.color = "#ff4444";
-      }
-
-      // Show next button after 3 seconds
+      const song = songs[currentRoundIndex];
+      resultCover.src = song.cover;
+      correctAnswerText.innerHTML = `<strong>${song.title}</strong><br>${song.artist} (${song.year})`;
+      
+      resultScreen.style.display = 'flex';
+      
       setTimeout(() => {
-        nextBtn.style.display = 'inline-block';
-        if (currentRoundIndex === songs.length - 1) {
-          nextBtn.textContent = "Ergebnis ansehen";
+        currentRoundIndex++;
+        if (currentRoundIndex < songs.length) {
+          loadRound();
         } else {
-          nextBtn.textContent = "Nächste Runde";
+          gameScreen.style.display = 'none';
+          finalScreen.style.display = 'flex';
         }
-      }, 3000);
-    }
-
-    function nextRound() {
-      currentRoundIndex++;
-      if (currentRoundIndex < songs.length) {
-        loadRound();
-      } else {
-        showFinal();
-      }
-    }
-
-    function showFinal() {
-      gameScreen.style.display = 'none';
-      finalScreen.style.display = 'block';
+      }, 3000); // 3s result pause
     }
   </script>
 </body>
