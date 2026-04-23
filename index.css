@@ -233,12 +233,12 @@ h1, h2, h3 {
 /* Vinyl Player Area */
 .vinyl-container {
   position: relative;
-  width: 260px;
-  height: 260px;
+  width: 100%;
   margin: 1rem auto;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex: 1;
 }
 
 .vinyl-progress {
@@ -491,8 +491,7 @@ h1, h2, h3 {
   height: 100%;
   background-size: cover;
   background-position: center;
-  filter: blur(40px) brightness(0.25);
-  transform: scale(1.1);
+  filter: blur(40px) brightness(0.2);
   z-index: -1;
   background-color: #0d1117;
 }
