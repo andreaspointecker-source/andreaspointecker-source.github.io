@@ -310,6 +310,33 @@ h1, h2, h3 {
   flex: 1;
 }
 
+.vinyl-progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+  z-index: 1;
+}
+
+.vinyl-progress circle {
+  fill: none;
+  stroke-width: 6;
+  stroke-linecap: round;
+}
+
+.vinyl-progress .bg {
+  stroke: rgba(255, 255, 255, 0.05);
+}
+
+.vinyl-progress .fg {
+  stroke: var(--accent-primary);
+  stroke-dasharray: 754;
+  stroke-dashoffset: 754;
+  transition: stroke-dashoffset 0.1s linear;
+}
+
 .vinyl-wrapper {
   position: relative;
   width: 200px;
@@ -321,6 +348,8 @@ h1, h2, h3 {
   width: 100%;
   height: 100%;
   border-radius: 50%;
+  object-fit: cover;
+  display: block;
 }
 
 .vinyl-art-overlay { display: none; }
@@ -331,10 +360,11 @@ h1, h2, h3 {
   top: 30px;
   width: 100px;
   height: 130px;
+  object-fit: contain;
   z-index: 10;
   transform: rotate(-25deg);
   transform-origin: 80% 20%;
-  transition: transform 0.8s ease;
+  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .vinyl-arm.active { transform: rotate(-5deg); }
@@ -352,8 +382,20 @@ h1, h2, h3 {
   display: none;
   flex-direction: column;
   z-index: 50;
-  background: transparent;
-  overflow: hidden;
+  background: #0d1117;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.result-content {
+  position: relative;
+  width: 100%;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5rem;
+  z-index: 1;
 }
 
 .result-bg-blur {
@@ -364,9 +406,44 @@ h1, h2, h3 {
   height: 100%;
   filter: blur(40px) brightness(0.2);
   z-index: -1;
-  background-color: #0d1117;
   background-size: cover;
   background-position: center;
+}
+
+.result-answer-badge {
+  background: var(--accent-primary);
+  padding: 0.8rem 2rem;
+  border-radius: 15px;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 10px 20px rgba(255, 140, 0, 0.2);
+  width: 80%;
+}
+
+.result-cover-card {
+  width: 160px;
+  height: 160px;
+  border-radius: 15px;
+  object-fit: cover;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+  margin-bottom: 1.5rem;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.result-info-box {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.result-info-box h2 {
+  font-size: 1.4rem;
+  margin-bottom: 0.2rem;
+}
+
+.result-info-box h3 {
+  font-size: 1.1rem;
+  color: var(--accent-primary);
+  opacity: 0.9;
 }
 
 /* SHUFFLE ANIMATION (Simplified) */
