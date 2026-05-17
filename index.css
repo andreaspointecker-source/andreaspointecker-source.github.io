@@ -499,6 +499,143 @@ h1, h2, h3 {
   50% { transform: scale(1.1) rotate(15deg); }
 }
 
+/* Store Buttons & Badges */
+.store-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+}
+
+.store-badge-link {
+  display: inline-block;
+  transition: transform 0.2s ease, filter 0.2s ease;
+  height: 44px;
+}
+
+.store-badge-link:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+}
+
+.store-badge-img {
+  height: 44px;
+  width: auto;
+  display: block;
+  object-fit: contain;
+}
+
+/* App Store Badge - Coming Soon */
+.store-badge-coming-soon {
+  position: relative;
+  display: inline-block;
+  height: 44px;
+  cursor: default;
+}
+
+.store-badge-coming-soon .store-badge-img {
+  opacity: 0.4;
+  filter: grayscale(100%);
+  transition: opacity 0.3s ease;
+}
+
+.store-badge-coming-soon:hover .store-badge-img {
+  opacity: 0.6;
+}
+
+.coming-soon-badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: linear-gradient(135deg, #FF3B30, #FF9500);
+  color: white;
+  font-size: 0.6rem;
+  font-weight: 800;
+  padding: 0.2rem 0.5rem;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 10px rgba(255, 59, 48, 0.3);
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+/* Contact Section */
+.contact {
+  padding-bottom: 6rem;
+  display: flex;
+  justify-content: center;
+}
+
+.contact-card {
+  width: 100%;
+  max-width: 650px;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  border-radius: 24px;
+  padding: 3rem 2rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.contact-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 140, 0, 0.3);
+}
+
+.contact-icon {
+  background: rgba(255, 140, 0, 0.1);
+  border: 1px solid rgba(255, 140, 0, 0.2);
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+}
+
+.contact-text {
+  font-size: 1.1rem;
+  color: var(--text-primary);
+  max-width: 480px;
+  line-height: 1.6;
+}
+
+.contact-text a {
+  color: var(--accent-primary);
+  text-decoration: none;
+  font-weight: 700;
+  transition: opacity 0.2s ease;
+  border-bottom: 2px solid rgba(255, 140, 0, 0.3);
+  padding-bottom: 2px;
+}
+
+.contact-text a:hover {
+  opacity: 0.8;
+  border-bottom-color: var(--accent-primary);
+}
+
+.contact-btn {
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  padding: 1rem 2.5rem;
+  font-size: 1rem;
+  min-width: 220px;
+}
+
 /* MEDIA QUERIES */
 @media (max-width: 992px) {
   .hero h1 { font-size: 3rem; }
@@ -521,4 +658,8 @@ h1, h2, h3 {
   .footer-links a { flex: 1; text-align: center; font-size: 0.8rem; }
   .feature-content h2 { font-size: 2rem; }
   .bg-overlay { opacity: 0.2; }
+  
+  .contact-card { padding: 2rem 1.2rem; gap: 1.2rem; }
+  .contact-text { font-size: 1rem; }
+  .contact-btn { width: 100%; }
 }
