@@ -21,10 +21,9 @@
         <a href="https://play.google.com/store/apps/details?id=com.pointe.beatmaster" target="_blank" class="store-badge-link">
           <img src="assets/images/Google-Play-Badge.png" alt="Get it on Google Play" class="store-badge-img">
         </a>
-        <div class="store-badge-coming-soon">
+        <a href="https://apps.apple.com/app/beatmaster-music-quiz-game/id6769146005" target="_blank" class="store-badge-link">
           <img src="assets/images/App-Store-Badge.png" alt="Download on the App Store" class="store-badge-img">
-          <span class="coming-soon-badge">Coming Soon</span>
-        </div>
+        </a>
       </div>
     </div>
   </nav>
@@ -114,7 +113,7 @@
           <div class="lite-start-content">
             <h2 style="font-size: 1.8rem; font-weight: 900;">SUPER GEMACHT!</h2>
             <p style="font-size: 0.9rem; color: var(--text-secondary);">Du hast ein echtes Talent für Musik-Quiz!</p>
-            <a href="https://play.google.com/store/apps/details?id=com.pointe.beatmaster" class="btn-primary" style="text-decoration: none; display: block; width: 100%;">APP KOSTENLOS LADEN</a>
+            <a id="final-download-btn" href="https://play.google.com/store/apps/details?id=com.pointe.beatmaster" class="btn-primary" style="text-decoration: none; display: block; width: 100%; text-align: center;">APP KOSTENLOS LADEN</a>
             <button id="restart-btn" style="background: none; border: none; color: var(--text-secondary); margin-top: 1rem; cursor: pointer; text-decoration: underline;">Nochmal spielen</button>
           </div>
         </div>
@@ -242,6 +241,13 @@
     const startScreen = document.getElementById('start-screen');
     const gameScreen = document.getElementById('game-screen');
     const finalScreen = document.getElementById('final-screen');
+    const finalDownloadBtn = document.getElementById('final-download-btn');
+    
+    // Set dynamic download link based on OS
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+    if (isIOS && finalDownloadBtn) {
+      finalDownloadBtn.href = "https://apps.apple.com/app/beatmaster-music-quiz-game/id6769146005";
+    }
     
     const audio = document.getElementById('audio-engine');
     const vinylPlayer = document.getElementById('vinyl-player');
