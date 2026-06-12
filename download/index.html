@@ -211,12 +211,32 @@
 
       // Detect OS Type
       let osType = "desktop";
-      const userAgent = navigator.userAgent || navigator.vendor || window.opera || "";
+      const ua = (navigator.userAgent || navigator.vendor || window.opera || "").toLowerCase();
+      const platform = (navigator.platform || "").toLowerCase();
 
-      if (/android/i.test(userAgent)) {
+      // 1. Direct checks
+      const isAndroid = /android/i.test(ua) || /android/i.test(platform);
+      const isIOS = /ipad|iphone|ipod/i.test(ua) || 
+                    /ipad|iphone|ipod/i.test(platform) || 
+                    (platform === 'macintel' && navigator.maxTouchPoints > 1);
+
+      if (isAndroid) {
         osType = "android";
-      } else if (/iPad|iPhone|iPod/i.test(userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)) {
+      } else if (isIOS) {
         osType = "ios";
+      } else {
+        // 2. Fallback check for mobile Webviews requesting "desktop site"
+        const isMobileScreen = window.innerWidth <= 800 || window.innerHeight <= 800;
+        const hasTouch = navigator.maxTouchPoints > 0 || 'ontouchstart' in window;
+        
+        if (hasTouch && isMobileScreen) {
+          // If it's a mobile touch device, look at browser engine details
+          if (/safari/i.test(ua) && !/chrome/i.test(ua) && !/android/i.test(ua)) {
+            osType = "ios";
+          } else {
+            osType = "android"; // Default fallback for touch-based mobile-sized screens
+          }
+        }
       }
 
       // Determine Redirect Target
