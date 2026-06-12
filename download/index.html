@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Beatmaster - Redirecting...</title>
+  
+  <!-- Modern Premium Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-color: #0b0b0f;
+      --accent-primary: #8a2be2;
+      --accent-secondary: #00f2fe;
+      --text-color: #ffffff;
+      --text-secondary: #8f8f9e;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-family: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      overflow: hidden;
+      text-align: center;
+      padding: 20px;
+    }
+
+    /* Elegant glassmorphic card container */
+    .container {
+      position: relative;
+      z-index: 2;
+      max-width: 400px;
+      padding: 40px 30px;
+      border-radius: 24px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+      animation: fadeIn 0.8s ease-out;
+    }
+
+    /* Background glow accents */
+    .bg-glow {
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(138, 43, 226, 0.15) 0%, rgba(0, 242, 254, 0.05) 50%, transparent 100%);
+      filter: blur(50px);
+      z-index: 1;
+      pointer-events: none;
+      animation: floatGlow 10s ease-in-out infinite alternate;
+    }
+
+    h1 {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, #ffffff 30%, var(--text-secondary) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    p {
+      color: var(--text-secondary);
+      font-size: 15px;
+      font-weight: 300;
+      margin-bottom: 30px;
+      line-height: 1.5;
+    }
+
+    /* Premium Neon Spinner */
+    .spinner-container {
+      position: relative;
+      width: 70px;
+      height: 70px;
+      margin: 0 auto;
+    }
+
+    .spinner {
+      width: 100%;
+      height: 100%;
+      border: 3px solid rgba(255, 255, 255, 0.03);
+      border-radius: 50%;
+      border-top-color: var(--accent-primary);
+      border-right-color: var(--accent-secondary);
+      animation: spin 1s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite;
+    }
+
+    .spinner-glow {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      box-shadow: 0 0 15px rgba(138, 43, 226, 0.4);
+      animation: pulse 2s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    /* User Action Link in case redirection fails/is slow */
+    .manual-link {
+      display: inline-block;
+      margin-top: 30px;
+      font-size: 13px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.2);
+      transition: all 0.3s ease;
+      opacity: 0.7;
+    }
+
+    .manual-link:hover {
+      color: var(--accent-secondary);
+      border-bottom-color: var(--accent-secondary);
+      opacity: 1;
+    }
+
+    /* Animations */
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 0.2; }
+      50% { transform: scale(1.05); opacity: 0.6; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes floatGlow {
+      0% { transform: translate(-20px, -20px) scale(1); }
+      100% { transform: translate(20px, 20px) scale(1.2); }
+    }
+  </style>
+</head>
+<body>
+  
+  <div class="bg-glow"></div>
+  
+  <div class="container">
+    <h1>Opening Beatmaster</h1>
+    <p>Finding the right store for your device...</p>
+    
+    <div class="spinner-container">
+      <div class="spinner"></div>
+      <div class="spinner-glow"></div>
+    </div>
+
+    <a id="fallback-link" href="#" class="manual-link">Click here if you are not redirected automatically</a>
+  </div>
+
+  <script>
+    (function() {
+      // Configuration Links
+      const IOS_URL = "https://apps.apple.com/app/beatmaster-music-quiz-game/id6769146005";
+      const ANDROID_URL = "https://play.google.com/store/apps/details?id=com.pointe.beatmaster";
+      const FALLBACK_URL = "https://andreaspointecker-source.github.io/";
+
+      // Tinybird Configuration
+      const TINYBIRD_URL = "https://api.eu-central-1.aws.tinybird.co/v0/events?name=qr_scans";
+      const TINYBIRD_TOKEN = "p.eyJ1IjogImM5NGJkZWQ0LTdhNTktNDU2Yy1hODk2LTRlZmMxMTFlZmM1MyIsICJpZCI6ICJkYjRjMTdiNS05OTUzLTQyZmEtYTZjNy0yODE4YzBmNjFjODciLCAiaG9zdCI6ICJhd3MtZXUtY2VudHJhbC0xIn0.x-0KLZAJvxBU3ZwZW-hPsqn_dSh2XBF2HzguFGh5XM4";
+
+      // Detect OS Type
+      let osType = "desktop";
+      const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+      if (/android/i.test(userAgent)) {
+        osType = "android";
+      } else if (/iPad|iPhone|iPod/.test(userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)) {
+        osType = "ios";
+      }
+
+      // Determine Redirect Target
+      let redirectUrl = FALLBACK_URL;
+      if (osType === "ios") {
+        redirectUrl = IOS_URL;
+      } else if (osType === "android") {
+        redirectUrl = ANDROID_URL;
+      }
+
+      // Update manual fallback link visual target
+      const manualLink = document.getElementById("fallback-link");
+      manualLink.href = redirectUrl;
+
+      const payload = {
+        timestamp: new Date().toISOString().replace('T', ' ').substring(0, 19),
+        platform: osType
+      };
+
+      // Control Redirect Execution
+      let redirected = false;
+      const triggerRedirect = () => {
+        if (!redirected) {
+          redirected = true;
+          window.location.href = redirectUrl;
+        }
+      };
+
+      // Safely perform event post and redirect
+      if (TINYBIRD_TOKEN && TINYBIRD_TOKEN !== "DEIN_TINYBIRD_TOKEN") {
+        fetch(TINYBIRD_URL, {
+          method: "POST",
+          mode: "cors",
+          keepalive: true,
+          headers: {
+            "Authorization": `Bearer ${TINYBIRD_TOKEN}`,
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(payload)
+        })
+        .then(() => {
+          // Immediately redirect on success
+          triggerRedirect();
+        })
+        .catch((err) => {
+          console.error("Tracking error:", err);
+          // Still redirect on failure
+          triggerRedirect();
+        });
+      } else {
+        console.warn("Tinybird Token not set. Redirecting directly.");
+      }
+
+      // Guarantee redirect happens after 250ms fallback window
+      setTimeout(triggerRedirect, 250);
+
+    })();
+  </script>
+</body>
+</html>
