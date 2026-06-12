@@ -1,6 +1,0 @@
-SCHEMA >
-    `timestamp` DateTime,
-    `platform` String
-
-ENGINE "ReplacingMergeTree"
-ENGINE_SORT_KEY `timestamp`
